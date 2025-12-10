@@ -1,45 +1,70 @@
-# Dr. Fisher Endo - Website
+# Dr Fisher Endo Website Replica
 
-A clean, static website copy of the Dr. Fisher Endo dental clinic website.
+This is a complete replica of the Dr Fisher Endo website (https://www.drfisher-endo.com/).
+
+## File Structure
+
+```
+drfisher/
+├── index.html          # Homepage
+├── about.html          # About page (אודות)
+├── cases.html          # Cases page (הצגת מקרים)
+├── equipment.html      # Equipment page (מכשור מתקדם)
+├── referral.html       # Referral page (הפניית מטופל)
+├── styles.css          # Main stylesheet
+├── script.js           # JavaScript for interactivity
+├── logo.png            # Logo image
+└── images/             # Image assets
+    ├── hero1.jpg
+    ├── hero2.jpg
+    ├── hero3.jpg
+    └── hero4.jpg
+```
 
 ## Features
 
-- Responsive design (mobile, tablet, desktop)
-- RTL (Right-to-Left) layout for Hebrew content
-- Clean, modern design
-- Accessible navigation
-- Sticky header
-- Hero section with background image
-
-## Structure
-
-- `index.html` - Main HTML file
-- `styles.css` - All styling
-- `script.js` - JavaScript functionality
-- `README.md` - This file
+- **Responsive Design**: Fully responsive layout that works on desktop, tablet, and mobile devices
+- **RTL Support**: Right-to-left layout for Hebrew content
+- **Image Slider**: Interactive hero image slider on the homepage
+- **Navigation**: Consistent navigation across all pages
+- **Contact Form**: Patient referral form with validation
+- **Modern CSS**: Clean, semantic HTML5 and CSS3
+- **Accessibility**: Skip links and proper semantic HTML
 
 ## Pages
 
-The website includes the following pages:
-- `index.html` - Home page with hero section
-- `about.html` - About page
-- `contact.html` - Patient Referral page
-- `advanced-equipment.html` - Advanced Equipment page
-- `projects.html` - Case Presentations page
-- `accessibility.html` - Accessibility Statement page
+1. **Homepage (index.html)**: Features a hero image slider and welcome content
+2. **About (about.html)**: Information about Dr. Fisher and the practice
+3. **Cases (cases.html)**: Case presentations and examples
+4. **Equipment (equipment.html)**: Advanced equipment and technology used
+5. **Referral (referral.html)**: Patient referral form for dentists
 
-## Contact Information
+## Design Elements
 
-- Email: dr.fisher.endo@gmail.com
-- Phone: 0523254522
+- **Color Scheme**: 
+  - Primary Teal: #2d5f5f
+  - Dark Teal: #1a4a4a
+  - Light Teal: #3d7a7a
+  - White: #ffffff
+  - Light Background: #f5f5f0
 
-## Browser Support
+- **Typography**: Arial/Helvetica sans-serif fonts
+- **Layout**: Clean, professional medical practice design
 
-Works on all modern browsers (Chrome, Firefox, Safari, Edge).
+## Usage
+
+Simply open `index.html` in a web browser to view the website. All pages are linked through the navigation menu.
 
 ## Notes
 
-- Images are loaded from the original Wix CDN
-- The design maintains the original visual structure
-- All Hebrew text is preserved
-- RTL layout is properly implemented
+- The form submission currently shows an alert. In a production environment, this would need to be connected to a backend server.
+- Images are downloaded from the original website. Make sure all image files are present in the `images/` directory.
+- The logo should be placed in the root directory as `logo.png`.
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
