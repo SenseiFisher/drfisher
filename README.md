@@ -9,7 +9,7 @@ drfisher/
 ├── index.html          # Homepage
 ├── about.html          # About page (אודות)
 ├── cases.html          # Cases page (הצגת מקרים)
-├── equipment.html      # Equipment page (מכשור מתקדם)
+├── advanced-equipment.html  # Equipment page (מכשור מתקדם)
 ├── referral.html       # Referral page (הפניית מטופל)
 ├── styles.css          # Main stylesheet
 ├── script.js           # JavaScript for interactivity
@@ -36,7 +36,7 @@ drfisher/
 1. **Homepage (index.html)**: Features a hero image slider and welcome content
 2. **About (about.html)**: Information about Dr. Fisher and the practice
 3. **Cases (cases.html)**: Case presentations and examples
-4. **Equipment (equipment.html)**: Advanced equipment and technology used
+4. **Equipment (advanced-equipment.html)**: Advanced equipment and technology used
 5. **Referral (referral.html)**: Patient referral form for dentists
 
 ## Design Elements
