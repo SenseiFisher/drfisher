@@ -35,17 +35,9 @@ function Referral() {
   };
 
   return (
-    <section className="page-content">
+    <section className="page-content referral-page">
       <h1 className="page-title">צור קשר</h1>
       
-      <div className="content-section">
-        <div className="contact-info">
-          <p><strong>פרדס חנה כרכור, דרך הים 34 א</strong></p>
-          <p><a href="mailto:dr.fisher.endo@gmail.com">dr.fisher.endo@gmail.com</a></p>
-          <p><a href="tel:0523254522">0523254522</a></p>
-        </div>
-      </div>
-
       <div className="content-section">
         <form id="contactForm" className="contact-form" onSubmit={handleSubmit}>
           <div className="form-group">
@@ -125,6 +117,12 @@ function Referral() {
             </div>
           )}
         </form>
+      </div>
+
+      <div className="content-section">
+        <div className="contact-info">
+          <p><strong>פרדס חנה כרכור, דרך הים 34 א</strong></p>
+        </div>
       </div>
     </section>
   );

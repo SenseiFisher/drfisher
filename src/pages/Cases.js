@@ -72,7 +72,7 @@ function Cases() {
               <img 
                 src={project.image} 
                 alt={project.title} 
-                style={{ width: '100%', height: '250px', objectFit: 'cover', marginBottom: '15px' }}
+                className="project-card-image"
               />
               <h2>{project.title}</h2>
               <p>{project.description}</p>
