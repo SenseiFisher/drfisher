@@ -28,6 +28,8 @@ function Referral() {
     content: ''
   });
   const [showThankYou, setShowThankYou] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -36,20 +38,49 @@ function Referral() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setShowThankYou(true);
-    setFormData({
-      name: '',
-      address: '',
-      email: '',
-      phone: '',
-      subject: '',
-      content: ''
-    });
-    setTimeout(() => {
-      setShowThankYou(false);
-    }, 5000);
+    setIsSubmitting(true);
+    setErrorMessage('');
+    
+    try {
+      const response = await fetch('https://formspree.io/f/xrbnrobb', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          address: formData.address,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          content: formData.content
+        })
+      });
+
+      if (response.ok) {
+        setShowThankYou(true);
+        setFormData({
+          name: '',
+          address: '',
+          email: '',
+          phone: '',
+          subject: '',
+          content: ''
+        });
+        setTimeout(() => {
+          setShowThankYou(false);
+        }, 5000);
+      } else {
+        setErrorMessage('אירעה שגיאה בשליחת הטופס. אנא נסו שוב.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setErrorMessage('אירעה שגיאה בשליחת הטופס. אנא נסו שוב.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -127,11 +158,27 @@ function Referral() {
             />
           </div>
           
-          <button type="submit" className="submit-btn">שלח</button>
+          <button type="submit" className="submit-btn" disabled={isSubmitting}>
+            {isSubmitting ? 'שולח...' : 'שלח'}
+          </button>
+          
+          {errorMessage && (
+            <div className="error-message" style={{ 
+              marginTop: '15px', 
+              padding: '15px', 
+              backgroundColor: '#f8d7da', 
+              color: '#721c24', 
+              border: '1px solid #f5c6cb', 
+              borderRadius: '5px', 
+              textAlign: 'center' 
+            }}>
+              {errorMessage}
+            </div>
+          )}
           
           {showThankYou && (
             <div className="thank-you-message">
-              תודה
+              תודה! הפנייתך התקבלה בהצלחה.
             </div>
           )}
         </form>
