@@ -188,7 +188,6 @@ section {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center bottom;
 }
 
 .hero-text {
@@ -405,6 +404,10 @@ footer {
         height: 60vh;
     }
 
+    .hero-image img {
+        object-position: center center;
+    }
+
     .page-title {
         font-size: 32px;
         padding: 20px;
@@ -439,6 +442,10 @@ footer {
 
     .content-section p {
         font-size: 16px;
+    }
+
+    .hero-image img {
+        object-position: center center;
     }
 }
 
