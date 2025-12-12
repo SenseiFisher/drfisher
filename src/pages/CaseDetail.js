@@ -41,7 +41,8 @@ function CaseDetail() {
                 <div key={imgIndex} className="case-image-item">
                   {image.caption && <h4>{image.caption}</h4>}
                   <img src={image.src} alt={image.alt} />
-                  {image.caption && <p>{image.caption}</p>}
+                  {image.description && <p>{image.description}</p>}
+                  {!image.description && image.caption && <p>{image.caption}</p>}
                 </div>
               ))}
             </div>
