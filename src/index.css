@@ -5,6 +5,35 @@
     box-sizing: border-box;
 }
 
+/* Modern Scrollbar Styles */
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark-teal);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-teal);
+    border-radius: 10px;
+    border: 2px solid var(--dark-teal);
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--light-teal);
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-teal) var(--dark-teal);
+}
+
 :root {
     --primary-teal: #2d5f5f;
     --dark-teal: #1a4a4a;
