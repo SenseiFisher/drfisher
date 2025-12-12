@@ -301,6 +301,21 @@ section {
     color: #555;
 }
 
+.content-section ul,
+.content-section ol {
+    margin-right: clamp(1.5rem, 3vw, 2rem);
+    margin-top: clamp(0.75rem, 1.5vw, 1rem);
+    margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+    padding-right: clamp(1.5rem, 3vw, 2rem);
+    font-size: var(--body-size);
+    line-height: 1.8;
+    color: #555;
+}
+
+.content-section li {
+    margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
+}
+
 .content-section img {
     max-width: 100%;
     height: auto;
