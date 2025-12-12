@@ -139,7 +139,20 @@ function Referral() {
 
       <div className="content-section">
         <div className="contact-info">
-          <p><strong>פרדס חנה כרכור, דרך הים 34 א</strong></p>
+          <p>
+            <strong>
+              <a 
+                href="https://waze.com/ul?ll=32.4750,34.9500&navigate=yes"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}
+                onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
+                onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
+              >
+                פרדס חנה כרכור, דרך הים 34 א
+              </a>
+            </strong>
+          </p>
           <div className="map-container">
             <MapContainer
               center={[32.4750, 34.9500]}
