@@ -51,11 +51,11 @@ const equipment = [
 
 function Equipment() {
   return (
-    <div className="page-container">
-      <section className="content-section">
-        <div className="content-wrapper">
-          <h1 className="page-title">מכשור מתקדם</h1>
-          <div className="equipment-list">
+    <section className="page-content">
+      <h1 className="page-title">מכשור מתקדם</h1>
+      
+      <div className="content-section">
+        <div className="equipment-list">
             {equipment.map((item, index) => (
               <div key={index} className="equipment-item">
                 <div className="equipment-image-container">
@@ -72,10 +72,9 @@ function Equipment() {
                 </div>
               </div>
             ))}
-          </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }
 

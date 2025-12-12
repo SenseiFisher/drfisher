@@ -12,11 +12,13 @@ This is a React application for Dr. Fisher Endo dental practice website.
 ### Installation
 
 1. Install dependencies:
+
 ```bash
 npm install
 ```
 
 2. Start the development server:
+
 ```bash
 npm start
 ```
