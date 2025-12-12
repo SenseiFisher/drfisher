@@ -142,7 +142,7 @@ function Referral() {
           <p>
             <strong>
               <a 
-                href="https://waze.com/ul?ll=32.4750,34.9500&navigate=yes"
+                href="https://www.waze.com/he/live-map/directions/il/%D7%9E%D7%97%D7%95%D7%96-%D7%97%D7%99%D7%A4%D7%94/%D7%A4%D7%A8%D7%93%D7%A1-%D7%97%D7%A0%D7%94-%D7%9B%D7%A8%D7%9B%D7%95%D7%A8/%D7%93%D7%A8%D7%9A-%D7%94%D7%99%D7%9D-34?navigate=yes&to=place.EitEZXJlY2ggSGFZYW0gMzQsIFBhcmRlcyBIYW5hLUthcmt1ciwgSXNyYWVsIjASLgoUChIJFQtDgmcOHRURJNF3MES-H8kQIioUChIJr9DZvV0OHRURWApTZGwLhP8"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}
@@ -155,8 +155,8 @@ function Referral() {
           </p>
           <div className="map-container">
             <MapContainer
-              center={[32.4750, 34.9500]}
-              zoom={15}
+              center={[32.4806944, 34.9721389]}
+              zoom={16}
               style={{ height: '100%', width: '100%' }}
               scrollWheelZoom={false}
             >
@@ -164,7 +164,7 @@ function Referral() {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
-              <Marker position={[32.4750, 34.9500]}>
+              <Marker position={[32.4806944, 34.9721389]}>
                 <Popup>
                   דר אליהו פישר<br />
                   פרדס חנה כרכור, דרך הים 34 א
