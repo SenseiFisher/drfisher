@@ -136,6 +136,7 @@ header {
     height: clamp(3rem, 8vw, 4.5rem);
     width: auto;
     max-width: clamp(10rem, 25vw, 12.5rem);
+    transform: translateY(15%);
 }
 
 .logo a {
