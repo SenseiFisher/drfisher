@@ -114,36 +114,6 @@ export const casesData = {
           { src: itumCase2_1, alt: 'יתד דנטטוס שחודר ויוצר נקב (ע"פ ה-CT)', caption: 'יתד דנטטוס שחודר ויוצר נקב (ע"פ ה-CT)' },
           { src: itumCase2_2, alt: 'איטום הנקב עם MTA וביצוע חידוש טיפול שורש', caption: 'איטום הנקב עם MTA וביצוע חידוש טיפול שורש' }
         ]
-      },
-      {
-        title: 'מקרה 3',
-        images: [
-          { src: itum1, alt: 'מקרה 3' }
-        ]
-      },
-      {
-        title: 'מקרה 4',
-        images: [
-          { src: itum2, alt: 'מקרה 4' }
-        ]
-      },
-      {
-        title: 'מקרה 5',
-        images: [
-          { src: itum3, alt: 'מקרה 5' }
-        ]
-      },
-      {
-        title: 'מקרה 6',
-        images: [
-          { src: itum4, alt: 'מקרה 6' }
-        ]
-      },
-      {
-        title: 'מקרה 7',
-        images: [
-          { src: itumCase1_1, alt: 'מקרה 7' }
-        ]
       }
     ]
   },
