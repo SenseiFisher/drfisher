@@ -978,6 +978,23 @@ footer {
     text-decoration: underline;
 }
 
+.map-container {
+    width: 100%;
+    height: clamp(18.75rem, 30vw, 25rem);
+    margin-top: clamp(1rem, 2vw, 1.5rem);
+    border-radius: clamp(0.5rem, 1vw, 0.75rem);
+    overflow: hidden;
+    box-shadow: 0 clamp(0.125rem, 0.2vw, 0.25rem) clamp(0.5rem, 1vw, 0.75rem) rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.map-container .leaflet-container {
+    height: 100% !important;
+    width: 100% !important;
+    z-index: 0;
+    position: relative;
+}
+
 .thank-you-message {
     margin-top: clamp(1rem, 2vw, 1.5rem);
     padding: clamp(0.75rem, 1.5vw, 1rem);

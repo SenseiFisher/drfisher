@@ -1,4 +1,22 @@
 import React, { useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+
+// Fix for default marker icon in React-Leaflet
+let DefaultIcon = L.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  tooltipAnchor: [16, -28],
+  shadowSize: [41, 41]
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
 
 function Referral() {
   const [formData, setFormData] = useState({
@@ -122,6 +140,25 @@ function Referral() {
       <div className="content-section">
         <div className="contact-info">
           <p><strong>פרדס חנה כרכור, דרך הים 34 א</strong></p>
+          <div className="map-container">
+            <MapContainer
+              center={[32.4750, 34.9500]}
+              zoom={15}
+              style={{ height: '100%', width: '100%' }}
+              scrollWheelZoom={false}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker position={[32.4750, 34.9500]}>
+                <Popup>
+                  דר אליהו פישר<br />
+                  פרדס חנה כרכור, דרך הים 34 א
+                </Popup>
+              </Marker>
+            </MapContainer>
+          </div>
         </div>
       </div>
     </section>
