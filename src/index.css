@@ -42,13 +42,13 @@
     --light-bg: #f5f5f0;
     
     /* Base font size scales with viewport */
-    --base-font-size: clamp(14px, 1.2vw, 18px);
-    --h1-size: clamp(2rem, 5vw, 4.5rem);
-    --h2-size: clamp(1.5rem, 3.5vw, 3rem);
-    --h3-size: clamp(1.25rem, 2.5vw, 2rem);
-    --h4-size: clamp(1rem, 2vw, 1.5rem);
-    --body-size: clamp(0.9rem, 1.5vw, 1.125rem);
-    --small-size: clamp(0.75rem, 1.2vw, 0.875rem);
+    --base-font-size: clamp(12px, 1vw, 16px);
+    --h1-size: clamp(1.5rem, 4vw, 3.5rem);
+    --h2-size: clamp(1.25rem, 3vw, 2.5rem);
+    --h3-size: clamp(1.1rem, 2.2vw, 1.75rem);
+    --h4-size: clamp(0.9rem, 1.8vw, 1.3rem);
+    --body-size: clamp(0.85rem, 1.3vw, 1rem);
+    --small-size: clamp(0.7rem, 1.1vw, 0.8rem);
 }
 
 html {
@@ -261,7 +261,7 @@ section {
 .page-content {
     max-width: 90%;
     margin: 0 auto;
-    padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 2vw, 1.5rem);
+    padding: clamp(1.5rem, 4vw, 3rem) clamp(0.75rem, 1.5vw, 1.25rem);
     box-sizing: border-box;
 }
 
