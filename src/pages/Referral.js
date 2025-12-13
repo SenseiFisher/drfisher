@@ -30,18 +30,190 @@ function Referral() {
   const [showThankYou, setShowThankYou] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState({
+    name: '',
+    address: '',
+    phone: '',
+    subject: '',
+    content: ''
+  });
 
-  const handleChange = (e) => {
+  const formatPhoneNumber = (value) => {
+    // Remove all non-digit characters
+    let cleaned = value.replace(/\D/g, '');
+    
+    // Limit to 10 digits maximum
+    cleaned = cleaned.substring(0, 10);
+    
+    // Always format as 0XX-XXX-XXXX
+    if (cleaned.length === 0) return '';
+    if (cleaned.length <= 3) return cleaned;
+    if (cleaned.length <= 6) return `${cleaned.substring(0, 3)}-${cleaned.substring(3)}`;
+    return `${cleaned.substring(0, 3)}-${cleaned.substring(3, 6)}-${cleaned.substring(6, 10)}`;
+  };
+
+  const handlePhoneChange = (e) => {
+    const value = e.target.value;
+    // Only allow digits, remove everything else
+    let cleaned = value.replace(/\D/g, '');
+    
+    // Limit to 10 digits
+    cleaned = cleaned.substring(0, 10);
+    
+    // Format with dashes
+    const formatted = formatPhoneNumber(cleaned);
+    
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      phone: formatted
     });
+    
+    // Clear error when user starts typing
+    if (fieldErrors.phone) {
+      setFieldErrors({
+        ...fieldErrors,
+        phone: ''
+      });
+    }
+    // Clear general error message when user starts typing
+    if (errorMessage) {
+      setErrorMessage('');
+    }
+  };
+
+  const validateEmail = (email) => {
+    // Empty is not allowed (email is required)
+    if (email.trim().length === 0) {
+      return { isValid: false, error: 'אימייל נדרש' };
+    }
+    
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    if (!emailRegex.test(email)) {
+      return { isValid: false, error: 'אימייל לא תקין' };
+    }
+    
+    return { isValid: true, error: '' };
+  };
+
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    
+    setFormData({
+      ...formData,
+      email: value
+    });
+    
+    // Validate email
+    const validation = validateEmail(value);
+    setEmailError(validation.error);
+    
+    // Clear general error message when user starts typing
+    if (errorMessage) {
+      setErrorMessage('');
+    }
+  };
+
+  const validateField = (name, value) => {
+    const trimmedValue = value.trim();
+    
+    if (trimmedValue.length === 0) {
+      const fieldNames = {
+        name: 'שם',
+        address: 'כתובת',
+        phone: 'מספר טלפון',
+        subject: 'נושא',
+        content: 'תוכן'
+      };
+      return `שדה ${fieldNames[name]} נדרש`;
+    }
+    
+    return '';
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    
+    if (name === 'phone') {
+      handlePhoneChange(e);
+    } else if (name === 'email') {
+      handleEmailChange(e);
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+      
+      // Clear error when user starts typing
+      if (fieldErrors[name]) {
+        setFieldErrors({
+          ...fieldErrors,
+          [name]: ''
+        });
+      }
+      // Clear general error message when user starts typing
+      if (errorMessage) {
+        setErrorMessage('');
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setErrorMessage('');
+    
+    // Validate all required fields
+    const errors = {
+      name: validateField('name', formData.name),
+      address: validateField('address', formData.address),
+      phone: validateField('phone', formData.phone),
+      subject: validateField('subject', formData.subject),
+      content: validateField('content', formData.content)
+    };
+    
+    // Validate email
+    const emailValidation = validateEmail(formData.email);
+    if (!emailValidation.isValid) {
+      setEmailError(emailValidation.error);
+      setErrorMessage('אנא מלא את כל השדות הנדרשים');
+      setIsSubmitting(false);
+      // Scroll to email field
+      setTimeout(() => {
+        const emailField = document.getElementById('email');
+        if (emailField) {
+          emailField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          emailField.focus();
+        }
+      }, 100);
+      return;
+    }
+    
+    // Check if there are any field errors
+    const hasErrors = Object.values(errors).some(error => error !== '');
+    if (hasErrors) {
+      setFieldErrors(errors);
+      setErrorMessage('אנא מלא את כל השדות הנדרשים');
+      setIsSubmitting(false);
+      
+      // Scroll to first field with error
+      setTimeout(() => {
+        const fieldOrder = ['name', 'address', 'phone', 'subject', 'content'];
+        for (const fieldName of fieldOrder) {
+          if (errors[fieldName]) {
+            const fieldElement = document.getElementById(fieldName);
+            if (fieldElement) {
+              fieldElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              fieldElement.focus();
+              break;
+            }
+          }
+        }
+      }, 100);
+      return;
+    }
     
     try {
       const response = await fetch('https://formspree.io/f/xrbnrobb', {
@@ -69,6 +241,14 @@ function Referral() {
           subject: '',
           content: ''
         });
+        setFieldErrors({
+          name: '',
+          address: '',
+          phone: '',
+          subject: '',
+          content: ''
+        });
+        setEmailError('');
         setTimeout(() => {
           setShowThankYou(false);
         }, 5000);
@@ -88,7 +268,7 @@ function Referral() {
       <h1 className="page-title">צור קשר</h1>
       
       <div className="content-section">
-        <form id="contactForm" className="contact-form" onSubmit={handleSubmit}>
+        <form id="contactForm" className="contact-form" onSubmit={handleSubmit} noValidate>
           <div className="form-group">
             <label htmlFor="name">שם</label>
             <input 
@@ -99,6 +279,15 @@ function Referral() {
               onChange={handleChange}
               required 
             />
+            {fieldErrors.name && (
+              <div style={{ 
+                color: '#721c24', 
+                fontSize: '0.875rem', 
+                marginTop: '0.25rem' 
+              }}>
+                {fieldErrors.name}
+              </div>
+            )}
           </div>
           
           <div className="form-group">
@@ -109,7 +298,17 @@ function Referral() {
               name="address" 
               value={formData.address}
               onChange={handleChange}
+              required
             />
+            {fieldErrors.address && (
+              <div style={{ 
+                color: '#721c24', 
+                fontSize: '0.875rem', 
+                marginTop: '0.25rem' 
+              }}>
+                {fieldErrors.address}
+              </div>
+            )}
           </div>
           
           <div className="form-group">
@@ -122,6 +321,15 @@ function Referral() {
               onChange={handleChange}
               required 
             />
+            {emailError && (
+              <div style={{ 
+                color: '#721c24', 
+                fontSize: '0.875rem', 
+                marginTop: '0.25rem' 
+              }}>
+                {emailError}
+              </div>
+            )}
           </div>
           
           <div className="form-group">
@@ -132,7 +340,17 @@ function Referral() {
               name="phone" 
               value={formData.phone}
               onChange={handleChange}
+              required
             />
+            {fieldErrors.phone && (
+              <div style={{ 
+                color: '#721c24', 
+                fontSize: '0.875rem', 
+                marginTop: '0.25rem' 
+              }}>
+                {fieldErrors.phone}
+              </div>
+            )}
           </div>
           
           <div className="form-group">
@@ -143,7 +361,17 @@ function Referral() {
               name="subject" 
               value={formData.subject}
               onChange={handleChange}
+              required
             />
+            {fieldErrors.subject && (
+              <div style={{ 
+                color: '#721c24', 
+                fontSize: '0.875rem', 
+                marginTop: '0.25rem' 
+              }}>
+                {fieldErrors.subject}
+              </div>
+            )}
           </div>
           
           <div className="form-group">
@@ -156,6 +384,15 @@ function Referral() {
               onChange={handleChange}
               required
             />
+            {fieldErrors.content && (
+              <div style={{ 
+                color: '#721c24', 
+                fontSize: '0.875rem', 
+                marginTop: '0.25rem' 
+              }}>
+                {fieldErrors.content}
+              </div>
+            )}
           </div>
           
           <button type="submit" className="submit-btn" disabled={isSubmitting}>
