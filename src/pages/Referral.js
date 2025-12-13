@@ -202,8 +202,9 @@ function Referral() {
           </p>
           <div className="map-container">
             <MapContainer
-              center={[32.4806944, 34.9721389]}
-              zoom={16}
+              center={[32.4807500, 34.9725278]}
+              zoom={18}
+              maxZoom={18}
               style={{ height: '100%', width: '100%' }}
               scrollWheelZoom={false}
             >
@@ -211,7 +212,7 @@ function Referral() {
                 attribution='&copy; <a href="https://www.esri.com/">Esri</a> &mdash; Source: Esri, Maxar, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community'
                 url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
               />
-              <Marker position={[32.4806944, 34.9721389]}>
+              <Marker position={[32.4807500, 34.9725278]}>
                 <Popup>
                   דר אליהו פישר<br />
                   פרדס חנה כרכור, דרך הים 34 א
