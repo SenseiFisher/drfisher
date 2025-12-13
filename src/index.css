@@ -257,6 +257,14 @@ section {
     margin: 0;
 }
 
+.hero-text .hero-subtitle {
+    font-size: clamp(0.875rem, 2vw, 1.25rem);
+    color: var(--white);
+    text-shadow: clamp(0.125rem, 0.2vw, 0.25rem) clamp(0.125rem, 0.2vw, 0.25rem) clamp(0.5rem, 0.8vw, 0.75rem) rgba(0, 0, 0, 0.5);
+    margin-top: 0;
+    font-weight: 700;
+}
+
 /* Page Content */
 .page-content {
     max-width: 90%;

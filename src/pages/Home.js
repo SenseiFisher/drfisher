@@ -24,6 +24,7 @@ function Home() {
       </div>
       <div className="hero-text">
         <h1>ברוכים הבאים</h1>
+        <p className="hero-subtitle">מרפאת שיניים ד"ר אלי פישר</p>
       </div>
     </section>
   );
