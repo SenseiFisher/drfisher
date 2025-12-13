@@ -960,9 +960,11 @@ footer {
     }
 
     .referral-page .content-section {
-        max-width: 100% !important;
-        margin: clamp(0.75rem, 2vw, 1rem) 0 !important;
+        max-width: 225% !important;
+        width: 225% !important;
+        margin: clamp(0.75rem, 2vw, 1rem) -62.5% !important;
         padding: clamp(1rem, 2vw, 1.5rem) clamp(0.75rem, 1.5vw, 1rem) !important;
+        box-sizing: border-box;
     }
 
     .referral-page .contact-form {
