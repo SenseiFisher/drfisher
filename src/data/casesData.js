@@ -29,6 +29,21 @@ import machshirCase2_2 from '../assets/images/cases/machshir-case2-2.jpg';
 import machshirCase3_1 from '../assets/images/cases/machshir-case3-1.jpg';
 import machshirCase3_2 from '../assets/images/cases/machshir-case3-2.jpg';
 import machshirCase3_3 from '../assets/images/cases/machshir-case3-3.jpg';
+import machshirCase4_1 from '../assets/images/cases/machshir-case4-1.jpg';
+import machshirCase4_2 from '../assets/images/cases/machshir-case4-2.jpg';
+import machshirCase4_3 from '../assets/images/cases/machshir-case4-3.jpg';
+import machshirCase4_4 from '../assets/images/cases/machshir-case4-4.jpg';
+import machshirCase4_5 from '../assets/images/cases/machshir-case4-5.jpg';
+import machshirCase5_1 from '../assets/images/cases/machshir-case5-1.jpg';
+import machshirCase5_2 from '../assets/images/cases/machshir-case5-2.jpg';
+import machshirCase5_3 from '../assets/images/cases/machshir-case5-3.jpg';
+import machshirCase6_1 from '../assets/images/cases/machshir-case6-1.jpg';
+import machshirCase6_2 from '../assets/images/cases/machshir-case6-2.jpg';
+import machshirCase6_3 from '../assets/images/cases/machshir-case6-3.jpg';
+import machshirCase6_4 from '../assets/images/cases/machshir-case6-4.jpg';
+import machshirCase7_1 from '../assets/images/cases/machshir-case7-1.jpg';
+import machshirCase7_2 from '../assets/images/cases/machshir-case7-2.jpg';
+import machshirCase7_3 from '../assets/images/cases/machshir-case7-3.jpg';
 
 import kifufCase1_1 from '../assets/images/cases/kifuf-case1-1.jpg';
 import kifufCase1_2 from '../assets/images/cases/kifuf-case1-2.jpg';
@@ -157,24 +172,60 @@ export const casesData = {
       {
         title: 'מקרה 1',
         images: [
-          { src: machshirCase1_1, alt: 'צילום אבחנתי - מקרה 1', caption: 'צילום אבחנתי' },
-          { src: machshirCase1_2, alt: 'המכשיר השבור לאחר הוצאתי - מקרה 1', caption: 'המכשיר השבור לאחר הוצאתי' },
+          { src: machshirCase6_1, alt: 'צילום אבחנתי - מקרה 1', caption: 'צילום אבחנתי' },
+          { src: machshirCase1_1, alt: 'המכשיר השבור לאחר הוצאתי - מקרה 1', caption: 'המכשיר השבור לאחר הוצאתי' },
           { src: machshirCase1_3, alt: 'צילום סופי - מקרה 1', caption: 'צילום סופי' }
         ]
       },
       {
         title: 'מקרה 2',
         images: [
-          { src: machshirCase2_1, alt: 'צילום אבחנתי - מקרה 2', caption: 'צילום אבחנתי' },
-          { src: machshirCase2_2, alt: 'צילום סופי - מקרה 2', caption: 'צילום סופי' }
+          { src: machshirCase3_3, alt: 'צילום אבחנתי - מקרה 2', caption: 'צילום אבחנתי' },
+          { src: machshirCase3_1, alt: 'צילום סופי - מקרה 2', caption: 'צילום סופי' }
         ]
       },
       {
         title: 'מקרה 3',
         images: [
-          { src: machshirCase3_1, alt: 'צילום אבחנתי - מקרה 3', caption: 'צילום אבחנתי' },
-          { src: machshirCase3_2, alt: 'המכשיר השבור לאחר ההוצאה - מקרה 3', caption: 'המכשיר השבור לאחר ההוצאה' },
-          { src: machshirCase3_3, alt: 'צילום סופי - מקרה 3', caption: 'צילום סופי' }
+          { src: machshirCase7_3, alt: 'צילום אבחנתי - מקרה 3', caption: 'צילום אבחנתי' },
+          { src: machshirCase1_2, alt: 'המכשיר השבור לאחר ההוצאה - מקרה 3', caption: 'המכשיר השבור לאחר ההוצאה' },
+          { src: machshirCase6_4, alt: 'צילום סופי - מקרה 3', caption: 'צילום סופי' }
+        ]
+      },
+      {
+        title: 'מקרה 4',
+        description: 'בוצע הוצאת המשירים השבורים וחידוש טיפלי שורש',
+        images: [
+          { src: machshirCase2_2, alt: 'צילום אבחנתי - מקרה 4', caption: 'צילום אבחנתי' },
+          { src: machshirCase5_2, alt: 'המכשיר השבור לאחר הוצאתו - מקרה 4', caption: 'המכשיר השבור לאחר הוצאתו' },
+          { src: machshirCase2_1, alt: 'צילום לאחר הוצאת המכשיר השבור - מקרה 4', caption: 'צילום לאחר הוצאת המכשיר השבור' },
+          { src: machshirCase6_2, alt: 'צילום אבחנתי - מקרה 4', caption: 'צילום אבחנתי' },
+          { src: machshirCase3_2, alt: 'צילום מעקב אחרי שנתיים - מקרה 4', caption: 'צילום מעקב אחרי שנתיים' }
+        ]
+      },
+      {
+        title: 'מקרה 5',
+        images: [
+          { src: machshirCase4_1, alt: 'צילום אבחנתי - מקרה 5', caption: 'צילום אבחנתי' },
+          { src: machshirCase5_3, alt: 'המכשיר השבור לאחר ההוצאה - מקרה 5', caption: 'המכשיר השבור לאחר ההוצאה' },
+          { src: machshirCase4_2, alt: 'צילום לאחר הוצאת המכשיר השבור וביצוע חידוש טיפול שורש - מקרה 5', caption: 'צילום לאחר הוצאת המכשיר השבור וביצוע חידוש טיפול שורש' }
+        ]
+      },
+      {
+        title: 'מקרה 6',
+        images: [
+          { src: machshirCase4_3, alt: 'צילום אבחנתי - מקרה 6', caption: 'צילום אבחנתי' },
+          { src: machshirCase6_3, alt: 'צילום אבחנתי מקרוב - מקרה 6', caption: 'צילום אבחנתי מקרוב' },
+          { src: machshirCase4_5, alt: 'המכשיר השבור לאחר ההוצאה - מקרה 6', caption: 'המכשיר השבור לאחר ההוצאה' },
+          { src: machshirCase7_2, alt: 'צילום לאחר הוצאת המכשיר השבור וביצוע חידוש טיפול שורש - מקרה 6', caption: 'צילום לאחר הוצאת המכשיר השבור וביצוע חידוש טיפול שורש' }
+        ]
+      },
+      {
+        title: 'מקרה 7',
+        images: [
+          { src: machshirCase5_1, alt: 'צילום אבחנתי - מקרה 7', caption: 'צילום אבחנתי' },
+          { src: machshirCase7_1, alt: 'המכשיר השבור לאחר הוצאתו - מקרה 7', caption: 'המכשיר השבור לאחר הוצאתו' },
+          { src: machshirCase4_4, alt: 'צילום לאחר הוצאת המכשיר השבור - מקרה 7', caption: 'צילום לאחר הוצאת המכשיר השבור' }
         ]
       }
     ]
