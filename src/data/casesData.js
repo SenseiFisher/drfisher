@@ -5,6 +5,11 @@ import guta3 from '../assets/images/cases/guta-perka-3.jpg';
 import guta4 from '../assets/images/cases/guta-perka-4.jpg';
 import guta5 from '../assets/images/cases/guta-perka-5.jpg';
 import guta6 from '../assets/images/cases/guta-perka-6.jpg';
+import guta7 from '../assets/images/cases/guta-perka-7.jpg';
+import guta8 from '../assets/images/cases/guta-perka-8.jpg';
+import gutaCase1Middle from '../assets/images/cases/guta-perka-middle-case1.jpg';
+import gutaCase3Replacement from '../assets/images/cases/guta-perka-case3-replacement.jpg';
+import gutaCase3Middle from '../assets/images/cases/guta-perka-case3-middle.jpg';
 import itumCase1_1 from '../assets/images/cases/itum-nekev-case1-1.jpg';
 import itumCase1_2 from '../assets/images/cases/itum-nekev-case1-2.jpg';
 import itumCase1_3 from '../assets/images/cases/itum-nekev-case1-3.jpg';
@@ -102,22 +107,25 @@ export const casesData = {
       {
         title: 'מקרה 1',
         images: [
-          { src: guta1, alt: 'גוטה פרקה שהוצאה מעבר לאפקס - מקרה 1 אבחנתי', caption: 'אבחנתי' },
-          { src: guta2, alt: 'גוטה פרקה שהוצאה מעבר לאפקס - מקרה 1 סופי', caption: 'סופי' }
+          { src: gutaCase1Middle, alt: 'גוטה פרקה שהוצאה מעבר לאפקס - מקרה 1 אבחנתי', caption: 'אבחנתי' },
+          { src: guta4, alt: 'גוטה פרקה שהוצאה מעבר לאפקס - מקרה 1', caption: 'גוטה פרקה שהוצאה מעבר לאפקס' },
+          { src: guta3, alt: 'גוטה פרקה שהוצאה מעבר לאפקס - מקרה 1 סופי', caption: 'סופי' }
         ]
       },
       {
         title: 'מקרה 2',
         images: [
-          { src: guta3, alt: 'גוטה פרקה שהוצאה מעבר לאפקס - מקרה 2 אבחנתי', caption: 'אבחנתי' },
-          { src: guta4, alt: 'גוטה פרקה שהוצאה מעבר לאפקס - מקרה 2 סופי', caption: 'סופי' }
+          { src: guta5, alt: 'גוטה פרקה שהוצאה מעבר לאפקס - מקרה 2 אבחנתי', caption: 'אבחנתי' },
+          { src: guta2, alt: 'גוטה פרקה שהוצאה מעבר לאפקס - מקרה 2', caption: 'גוטה פרקה שהוצאה מעבר לאפקס' },
+          { src: guta1, alt: 'גוטה פרקה שהוצאה מעבר לאפקס - מקרה 2 סופי', caption: 'סופי' }
         ]
       },
       {
         title: 'מקרה 3',
         images: [
-          { src: guta5, alt: 'גוטה פרקה שהוצאה מעבר לאפקס - מקרה 3 אבחנתי', caption: 'אבחנתי' },
-          { src: guta6, alt: 'גוטה פרקה שהוצאה מעבר לאפקס - מקרה 3 סופי', caption: 'לאחר הוצאת הגוטה שחדרה לרקמה התומכת' }
+          { src: guta8, alt: 'גוטה פרקה שהוצאה מעבר לאפקס - מקרה 3 אבחנתי', caption: 'אבחנתי' },
+          { src: gutaCase3Middle, alt: 'גוטה פרקה שהוצאה מעבר לאפקס - מקרה 3', caption: 'לאחר הוצאת הגוטה שחדרה לרקמה התומכת' },
+          { src: guta7, alt: 'גוטה פרקה שהוצאה מעבר לאפקס - מקרה 3 סופי', caption: 'סופי' }
         ]
       }
     ]
