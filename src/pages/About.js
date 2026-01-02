@@ -16,7 +16,7 @@ function About() {
             <p className="profile-title">רופא שיניים<br />מ.ר. 5143</p>
             
             <div className="credentials">
-              <p><strong>D.M.D רופא שיניים כללי בעל תואר</strong><br />משנת 1988</p>
+              <p><strong>רופא שיניים כללי בעל תואר <span dir="ltr">D.M.D</span></strong><br />משנת 1988</p>
               
               <p><strong>פרקטיקה בלעדית בטיפולי שורש</strong><br />משנת 1990</p>
               
@@ -26,13 +26,13 @@ function About() {
               
               <p><strong>טיפל בחבלות דנטליות</strong><br />2018 - 2015 במסגרת הסדר של משרד החינוך</p>
               
-              <p><strong>CBTC בוגר קורס פענוח וביצוע</strong><br />אוניברסיטת תל-אביב</p>
+              <p><strong>בוגר קורס פענוח וביצוע <span dir="ltr">CBTC</span></strong><br />אוניברסיטת תל-אביב</p>
               
               <p><strong>כיהן כחבר בוועד האיגוד הישראלי לאנדודונטיה</strong><br />2006 - 2011</p>
               
               <p><strong>חבר באיגוד הישראלי לאנדודונטיה</strong><br />משנת 1990</p>
               
-              <p><strong>(ESE) חבר האיגוד האירופאי לאנדודונטולוגיה</strong></p>
+              <p><strong>חבר האיגוד האירופאי לאנדודונטולוגיה <span dir="ltr">(ESE)</span></strong></p>
               
               <p><strong>חבר בהסתדרות לרפואת שיניים בישראל</strong></p>
               

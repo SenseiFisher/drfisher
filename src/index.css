@@ -1256,6 +1256,7 @@ footer {
 .credentials strong {
     color: var(--dark-teal);
     font-weight: bold;
+    unicode-bidi: embed;
 }
 
 @media (max-width: 767px) {
