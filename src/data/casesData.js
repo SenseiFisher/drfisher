@@ -85,7 +85,7 @@ import morphologiaCase1_2 from '../assets/images/cases/morphologia-case1-2.jpg';
 import morphologiaCase2_1 from '../assets/images/cases/morphologia-case2-1.jpg';
 import morphologiaCase2_2 from '../assets/images/cases/morphologia-case2-2.jpg';
 import morphologiaCase3_1 from '../assets/images/cases/morphologia-case3-1.jpg';
-import morphologiaCase3_2 from '../assets/images/cases/morphologia-case3-2.jpg';
+import morphologiaCase3_2 from '../assets/images/cases/morphologia-case3-2.png';
 import morphologiaCase3_3 from '../assets/images/cases/morphologia-case3-3.jpg';
 import morphologiaCase3_4 from '../assets/images/cases/morphologia-case3-4.jpg';
 import morphologiaCase3_5 from '../assets/images/cases/morphologia-case3-5.jpg';
