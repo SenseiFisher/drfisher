@@ -137,15 +137,15 @@ export const casesData = {
       {
         title: 'מקרה 1',
         images: [
-          { src: havharatCase1_1, alt: 'צילום לפני הטיפול', caption: 'צילום לפני הטיפול' },
-          { src: havharatCase1_2, alt: 'צילום בסוף הטיפול', caption: 'צילום בסוף הטיפול' }
+          { src: havharatCase1_2, alt: 'צילום לפני הטיפול', caption: 'צילום לפני הטיפול' },
+          { src: havharatCase2_2, alt: 'צילום בסוף הטיפול', caption: 'צילום בסוף הטיפול' }
         ]
       },
       {
         title: 'מקרה 2',
         images: [
-          { src: havharatCase2_1, alt: 'צילום לפני הטיפול', caption: 'צילום לפני הטיפול' },
-          { src: havharatCase2_2, alt: 'צילום בסוף הטיפול', caption: 'צילום בסוף הטיפול' }
+          { src: havharatCase1_1, alt: 'צילום לפני הטיפול', caption: 'צילום לפני הטיפול' },
+          { src: havharatCase2_1, alt: 'צילום בסוף הטיפול', caption: 'צילום בסוף הטיפול' }
         ]
       }
     ]
