@@ -78,6 +78,7 @@ import siumCase3_1 from '../assets/images/cases/sium-case3-1.jpg';
 import siumCase3_2 from '../assets/images/cases/sium-case3-2.jpg';
 import siumCase4_1 from '../assets/images/cases/sium-case4-1.jpg';
 import siumCase4_2 from '../assets/images/cases/sium-case4-2.jpg';
+import siumCase4_middle from '../assets/images/cases/sium-case4-middle.jpg';
 
 import morphologiaCase1_1 from '../assets/images/cases/morphologia-case1-1.jpg';
 import morphologiaCase1_2 from '../assets/images/cases/morphologia-case1-2.jpg';
@@ -325,7 +326,7 @@ export const casesData = {
         images: [
           { src: siumCase2_1, alt: 'צילום אבחנתי - מקרה 2', caption: 'צילום אבחנתי' },
           { src: siumCase2_2, alt: 'בסיום טיפול השורש - מקרה 2', caption: 'בסיום טיפול השורש' },
-          { src: siumCase2_3, alt: 'לאחר חודש וחצי - מקרה 2', caption: 'לאחר חודש וחצי, ניתן לראות ריפוי של הנגע הסב-חודי' }
+          { src: siumCase2_3, alt: 'לאחר חודש וחצי - מקרה 2', caption: 'לאחר חודש וחצי', description: 'ניתן לראות ריפוי של הנגע הסב-חודי' }
         ]
       },
       {
@@ -339,6 +340,7 @@ export const casesData = {
         title: 'מקרה 4',
         images: [
           { src: siumCase4_1, alt: 'אבחנתי - מקרה 4', caption: 'אבחנתי' },
+          { src: siumCase4_middle, alt: 'מקרה 4 - תמונה אמצעית' },
           { src: siumCase4_2, alt: 'סופי - מקרה 4', caption: 'סופי' }
         ]
       }
