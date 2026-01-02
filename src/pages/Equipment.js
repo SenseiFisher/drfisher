@@ -1,8 +1,8 @@
 import React from 'react';
 import image1 from '../assets/images/equipment/image4_edited_edited.png';
-import image2 from '../assets/images/equipment/equipment-rubber-dam.jpg';
+import image2 from '../assets/images/equipment/equipment-image1.png';
 import image3 from '../assets/images/equipment/image1_edited_edited.png';
-import image5 from '../assets/images/equipment/equipment-image1.png';
+import image5 from '../assets/images/equipment/equipment-rubber-dam.jpg';
 import image6 from '../assets/images/equipment/image2_edited_edited.png';
 import image7 from '../assets/images/equipment/image3_edited_edited.png';
 
