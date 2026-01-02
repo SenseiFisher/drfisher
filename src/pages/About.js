@@ -26,7 +26,7 @@ function About() {
               
               <p><strong>טיפל בחבלות דנטליות</strong><br />2018 - 2015 במסגרת הסדר של משרד החינוך</p>
               
-              <p><strong>בוגר קורס פענוח וביצוע <span dir="ltr">CBTC</span></strong><br />אוניברסיטת תל-אביב</p>
+              <p><strong>בוגר קורס פענוח וביצוע <span dir="ltr">CBCT</span></strong><br />אוניברסיטת תל-אביב</p>
               
               <p><strong>כיהן כחבר בוועד האיגוד הישראלי לאנדודונטיה</strong><br />2006 - 2011</p>
               
