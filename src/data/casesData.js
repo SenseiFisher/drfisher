@@ -237,15 +237,15 @@ export const casesData = {
       {
         title: 'מקרה 1',
         images: [
-          { src: kifufCase1_1, alt: 'צילום אבחנתי - מקרה 1', caption: 'צילום אבחנתי' },
+          { src: kifufCase2_1, alt: 'צילום אבחנתי - מקרה 1', caption: 'צילום אבחנתי' },
           { src: kifufCase1_2, alt: 'צילום סופי - מקרה 1', caption: 'צילום סופי' }
         ]
       },
       {
         title: 'מקרה 2',
         images: [
-          { src: kifufCase2_1, alt: 'צילום אבחנתי - מקרה 2', caption: 'צילום אבחנתי' },
-          { src: kifufCase2_2, alt: 'צילום סופי - מקרה 2', caption: 'צילום סופי' }
+          { src: kifufCase2_2, alt: 'צילום אבחנתי - מקרה 2', caption: 'צילום אבחנתי' },
+          { src: kifufCase1_1, alt: 'צילום סופי - מקרה 2', caption: 'צילום סופי' }
         ]
       }
     ]
