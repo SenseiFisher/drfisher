@@ -7,18 +7,19 @@ function Footer() {
       <div className="footer-container">
         <div className="footer-content">
           <div className="footer-contact-item">
-            <span className="footer-icon">📧</span>
-            <a href="mailto:dr.fisher.endo@gmail.com" className="footer-link">
-              dr.fisher.endo@gmail.com
-            </a>
-          </div>
-          <div className="footer-contact-item">
             <span className="footer-icon">📞</span>
             <a href="tel:0523254522" className="footer-link">
               052-325-4522
             </a>
           </div>
           <div className="footer-contact-item">
+            <span className="footer-icon">📧</span>
+            <a href="mailto:dr.fisher.endo@gmail.com" className="footer-link">
+              dr.fisher.endo@gmail.com
+            </a>
+          </div>
+          <div className="footer-contact-item">
+            <span className="footer-icon">♿</span>
             <Link to="/accessibility" className="footer-link">
               הצהרת נגישות
             </Link>
