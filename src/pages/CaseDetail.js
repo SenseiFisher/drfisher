@@ -36,11 +36,10 @@ function CaseDetail() {
             <h3>{caseItem.title}</h3>
             <div className="case-images">
               {caseItem.images.map((image, imgIndex) => (
-                <div key={imgIndex} className="case-image-item">
+                <div key={imgIndex} className={`case-image-item ${!image.caption ? 'no-caption' : ''}`}>
                   {image.caption && <h4>{image.caption}</h4>}
                   <img src={image.src} alt={image.alt} />
                   {image.description && <p>{image.description}</p>}
-                  {!image.description && image.caption && <p>{image.caption}</p>}
                 </div>
               ))}
             </div>
