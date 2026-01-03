@@ -31,8 +31,6 @@ function CaseDetail() {
       </div>
 
       <div className="case-detail">
-        <h2>הצגת מקרים</h2>
-
         {caseData.cases.map((caseItem, index) => (
           <div key={index} className="case-section">
             <h3>{caseItem.title}</h3>

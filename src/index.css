@@ -879,12 +879,12 @@ footer {
 
 .case-section h3 {
     color: var(--white);
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-size: clamp(1rem, 2.5vw, 1.75rem);
     font-weight: 700;
-    margin-bottom: clamp(1.5rem, 3vw, 2rem);
-    margin-top: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    margin-top: clamp(1rem, 2vw, 1.5rem);
     text-align: center;
-    padding: clamp(0.75rem, 1.5vw, 1.25rem);
+    padding: clamp(0.375rem, 0.8vw, 0.625rem);
     background-color: var(--primary-teal);
     border-radius: clamp(0.5rem, 1vw, 0.75rem);
     border: clamp(0.125rem, 0.2vw, 0.25rem) solid var(--primary-teal);
@@ -947,6 +947,19 @@ footer {
 
 .nav-button:hover {
     background-color: var(--light-teal);
+}
+
+/* Upper nav-button (before page-title) - smaller with no padding/margins */
+.page-content > .nav-buttons:first-of-type {
+    margin: 0;
+    padding: 0;
+    border-top: none;
+    border-bottom: none;
+}
+
+.page-content > .nav-buttons:first-of-type .nav-button {
+    font-size: clamp(0.75rem, 1vw, 0.875rem);
+    padding: clamp(0.25rem, 0.5vw, 0.375rem) clamp(0.5rem, 1vw, 0.75rem);
 }
 
 /* Form Styles */
