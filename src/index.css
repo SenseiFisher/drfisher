@@ -5,6 +5,19 @@
     box-sizing: border-box;
 }
 
+/* Screen reader only class for accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 /* Modern Scrollbar Styles */
 /* Webkit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
@@ -35,6 +48,7 @@
 }
 
 :root {
+    /* Color contrast: All text colors meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text) */
     --primary-teal: #2d5f5f;
     --dark-teal: #1a4a4a;
     --light-teal: #3d7a7a;
@@ -106,6 +120,8 @@ body.home-page-active .App {
 
 .skip-link:focus {
     top: 0;
+    outline: 3px solid var(--white);
+    outline-offset: 2px;
 }
 
 /* Header Styles */
@@ -144,9 +160,21 @@ header {
     display: block;
 }
 
+.logo a:focus {
+    outline: 3px solid var(--white);
+    outline-offset: 2px;
+    border-radius: clamp(0.25rem, 0.5vw, 0.375rem);
+}
+
 /* Navigation */
 .menu-toggle {
     display: none;
+}
+
+.menu-toggle:focus {
+    outline: 3px solid var(--white);
+    outline-offset: 2px;
+    border-radius: clamp(0.25rem, 0.5vw, 0.375rem);
 }
 
 nav ul {
@@ -179,6 +207,12 @@ nav a:hover {
     background-color: var(--light-teal);
     transform: translateY(-1px);
     box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+nav a:focus {
+    outline: 3px solid var(--white);
+    outline-offset: 2px;
+    background-color: var(--light-teal);
 }
 
 nav a.active {
@@ -423,6 +457,13 @@ footer {
 
 .footer-link:hover::before {
     opacity: 1;
+}
+
+.footer-link:focus {
+    outline: 3px solid var(--white);
+    outline-offset: 2px;
+    color: var(--white);
+    border-radius: clamp(0.125rem, 0.2vw, 0.25rem);
 }
 
 .footer-text {
@@ -956,6 +997,12 @@ footer {
     background-color: var(--light-teal);
 }
 
+.nav-button:focus {
+    outline: 3px solid var(--white);
+    outline-offset: 2px;
+    background-color: var(--light-teal);
+}
+
 /* Upper nav-button (before page-title) - smaller with no padding/margins */
 .page-content > .nav-buttons:first-of-type {
     margin: 0;
@@ -1069,7 +1116,8 @@ footer {
 
 .form-group input:focus,
 .form-group textarea:focus {
-    outline: none;
+    outline: 3px solid var(--primary-teal);
+    outline-offset: 2px;
     border-color: var(--primary-teal);
 }
 
@@ -1094,6 +1142,24 @@ footer {
     background-color: var(--light-teal);
 }
 
+.submit-btn:focus {
+    outline: 3px solid var(--white);
+    outline-offset: 2px;
+    background-color: var(--light-teal);
+}
+
+.submit-btn:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.submit-btn:disabled:focus {
+    outline: 3px solid #999999;
+    outline-offset: 2px;
+}
+
 .contact-info {
     text-align: center;
     margin: clamp(1.5rem, 3vw, 2rem) 0;
@@ -1114,6 +1180,13 @@ footer {
 
 .contact-info a:hover {
     text-decoration: underline;
+}
+
+.contact-info a:focus {
+    outline: 3px solid var(--primary-teal);
+    outline-offset: 2px;
+    text-decoration: underline;
+    border-radius: clamp(0.125rem, 0.2vw, 0.25rem);
 }
 
 .map-container {

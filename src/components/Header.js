@@ -48,30 +48,50 @@ function Header() {
         >
           {menuOpen ? '✕' : '☰'}
         </button>
-        <nav className={menuOpen ? 'menu-open' : ''}>
+        <nav className={menuOpen ? 'menu-open' : ''} aria-label="ניווט ראשי">
           <ul>
             <li>
-              <Link to="/" className={isActive('/') && location.pathname === '/' ? 'active' : ''}>
+              <Link 
+                to="/" 
+                className={isActive('/') && location.pathname === '/' ? 'active' : ''}
+                aria-current={isActive('/') && location.pathname === '/' ? 'page' : undefined}
+              >
                 בית
               </Link>
             </li>
             <li>
-              <Link to="/cases" className={isActive('/cases') ? 'active' : ''}>
+              <Link 
+                to="/cases" 
+                className={isActive('/cases') ? 'active' : ''}
+                aria-current={isActive('/cases') ? 'page' : undefined}
+              >
                 הצגת מקרים
               </Link>
             </li>
             <li>
-              <Link to="/equipment" className={isActive('/equipment') ? 'active' : ''}>
+              <Link 
+                to="/equipment" 
+                className={isActive('/equipment') ? 'active' : ''}
+                aria-current={isActive('/equipment') ? 'page' : undefined}
+              >
                 מכשור מתקדם
               </Link>
             </li>
             <li>
-              <Link to="/about" className={isActive('/about') ? 'active' : ''}>
+              <Link 
+                to="/about" 
+                className={isActive('/about') ? 'active' : ''}
+                aria-current={isActive('/about') ? 'page' : undefined}
+              >
                 אודות
               </Link>
             </li>
             <li>
-              <Link to="/referral" className={isActive('/referral') ? 'active' : ''}>
+              <Link 
+                to="/referral" 
+                className={isActive('/referral') ? 'active' : ''}
+                aria-current={isActive('/referral') ? 'page' : undefined}
+              >
                 הפניית מטופל
               </Link>
             </li>

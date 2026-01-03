@@ -269,6 +269,7 @@ function Referral() {
       
       <div className="content-section">
         <form id="contactForm" className="contact-form" onSubmit={handleSubmit} noValidate>
+          <div aria-live="polite" aria-atomic="true" className="sr-only"></div>
           <div className="form-group">
             <label htmlFor="name">שם</label>
             <input 
@@ -277,14 +278,20 @@ function Referral() {
               name="name" 
               value={formData.name}
               onChange={handleChange}
-              required 
+              required
+              aria-invalid={!!fieldErrors.name}
+              aria-describedby={fieldErrors.name ? 'name-error' : undefined}
             />
             {fieldErrors.name && (
-              <div style={{ 
-                color: '#721c24', 
-                fontSize: '0.875rem', 
-                marginTop: '0.25rem' 
-              }}>
+              <div 
+                id="name-error"
+                role="alert"
+                style={{ 
+                  color: '#721c24', 
+                  fontSize: '0.875rem', 
+                  marginTop: '0.25rem' 
+                }}
+              >
                 {fieldErrors.name}
               </div>
             )}
@@ -299,13 +306,19 @@ function Referral() {
               value={formData.address}
               onChange={handleChange}
               required
+              aria-invalid={!!fieldErrors.address}
+              aria-describedby={fieldErrors.address ? 'address-error' : undefined}
             />
             {fieldErrors.address && (
-              <div style={{ 
-                color: '#721c24', 
-                fontSize: '0.875rem', 
-                marginTop: '0.25rem' 
-              }}>
+              <div 
+                id="address-error"
+                role="alert"
+                style={{ 
+                  color: '#721c24', 
+                  fontSize: '0.875rem', 
+                  marginTop: '0.25rem' 
+                }}
+              >
                 {fieldErrors.address}
               </div>
             )}
@@ -319,14 +332,20 @@ function Referral() {
               name="email" 
               value={formData.email}
               onChange={handleChange}
-              required 
+              required
+              aria-invalid={!!emailError}
+              aria-describedby={emailError ? 'email-error' : undefined}
             />
             {emailError && (
-              <div style={{ 
-                color: '#721c24', 
-                fontSize: '0.875rem', 
-                marginTop: '0.25rem' 
-              }}>
+              <div 
+                id="email-error"
+                role="alert"
+                style={{ 
+                  color: '#721c24', 
+                  fontSize: '0.875rem', 
+                  marginTop: '0.25rem' 
+                }}
+              >
                 {emailError}
               </div>
             )}
@@ -341,13 +360,19 @@ function Referral() {
               value={formData.phone}
               onChange={handleChange}
               required
+              aria-invalid={!!fieldErrors.phone}
+              aria-describedby={fieldErrors.phone ? 'phone-error' : undefined}
             />
             {fieldErrors.phone && (
-              <div style={{ 
-                color: '#721c24', 
-                fontSize: '0.875rem', 
-                marginTop: '0.25rem' 
-              }}>
+              <div 
+                id="phone-error"
+                role="alert"
+                style={{ 
+                  color: '#721c24', 
+                  fontSize: '0.875rem', 
+                  marginTop: '0.25rem' 
+                }}
+              >
                 {fieldErrors.phone}
               </div>
             )}
@@ -362,13 +387,19 @@ function Referral() {
               value={formData.subject}
               onChange={handleChange}
               required
+              aria-invalid={!!fieldErrors.subject}
+              aria-describedby={fieldErrors.subject ? 'subject-error' : undefined}
             />
             {fieldErrors.subject && (
-              <div style={{ 
-                color: '#721c24', 
-                fontSize: '0.875rem', 
-                marginTop: '0.25rem' 
-              }}>
+              <div 
+                id="subject-error"
+                role="alert"
+                style={{ 
+                  color: '#721c24', 
+                  fontSize: '0.875rem', 
+                  marginTop: '0.25rem' 
+                }}
+              >
                 {fieldErrors.subject}
               </div>
             )}
@@ -383,38 +414,53 @@ function Referral() {
               value={formData.content}
               onChange={handleChange}
               required
+              aria-invalid={!!fieldErrors.content}
+              aria-describedby={fieldErrors.content ? 'content-error' : undefined}
             />
             {fieldErrors.content && (
-              <div style={{ 
-                color: '#721c24', 
-                fontSize: '0.875rem', 
-                marginTop: '0.25rem' 
-              }}>
+              <div 
+                id="content-error"
+                role="alert"
+                style={{ 
+                  color: '#721c24', 
+                  fontSize: '0.875rem', 
+                  marginTop: '0.25rem' 
+                }}
+              >
                 {fieldErrors.content}
               </div>
             )}
           </div>
           
-          <button type="submit" className="submit-btn" disabled={isSubmitting}>
+          <button type="submit" className="submit-btn" disabled={isSubmitting} aria-busy={isSubmitting}>
             {isSubmitting ? 'שולח...' : 'שלח'}
           </button>
           
           {errorMessage && (
-            <div className="error-message" style={{ 
-              marginTop: '15px', 
-              padding: '15px', 
-              backgroundColor: '#f8d7da', 
-              color: '#721c24', 
-              border: '1px solid #f5c6cb', 
-              borderRadius: '5px', 
-              textAlign: 'center' 
-            }}>
+            <div 
+              className="error-message"
+              role="alert"
+              aria-live="assertive"
+              style={{ 
+                marginTop: '15px', 
+                padding: '15px', 
+                backgroundColor: '#f8d7da', 
+                color: '#721c24', 
+                border: '1px solid #f5c6cb', 
+                borderRadius: '5px', 
+                textAlign: 'center' 
+              }}
+            >
               {errorMessage}
             </div>
           )}
           
           {showThankYou && (
-            <div className="thank-you-message">
+            <div 
+              className="thank-you-message"
+              role="status"
+              aria-live="polite"
+            >
               תודה! הפנייתך התקבלה בהצלחה.
             </div>
           )}
