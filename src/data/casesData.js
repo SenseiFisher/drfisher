@@ -100,8 +100,8 @@ export const casesData = {
       {
         title: 'מקרה 1',
         images: [
-          { src: itumCase1_1, alt: 'יתד דנטטוס שחודר לתוך הרקמה התומכת', caption: 'יתד דנטטוס שחודר לתוך הרקמה התומכת' },
-          { src: itumCase1_2, alt: 'לאחר ביצוע האיטום עם MTA', caption: 'לאחר ביצוע האיטום עם MTA' },
+          { src: itumCase1_2, alt: 'יתד דנטטוס שחודר לתוך הרקמה התומכת', caption: 'יתד דנטטוס שחודר לתוך הרקמה התומכת' },
+          { src: itumCase1_1, alt: 'לאחר ביצוע האיטום עם MTA', caption: 'לאחר ביצוע האיטום עם MTA' },
           { src: itumCase1_3, alt: 'ביקורת לאחר שנתיים וחצי', caption: 'ביקורת לאחר שנתיים וחצי' }
         ]
       },
