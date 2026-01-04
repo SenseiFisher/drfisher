@@ -934,8 +934,16 @@ footer {
 .case-section h4 {
     color: var(--dark-teal);
     font-size: var(--h4-size);
+    margin-bottom: clamp(0.25rem, 0.5vw, 0.5rem);
+    padding: clamp(0.75rem, 1.5vw, 1rem) clamp(0.75rem, 1.5vw, 1rem) 0;
+}
+
+.case-image-item .image-description {
+    padding: 0 clamp(0.75rem, 1.5vw, 1rem);
+    color: var(--dark-teal);
+    font-size: clamp(0.75rem, 1.3vw, 0.95rem);
+    text-align: right;
     margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
-    padding: clamp(0.75rem, 1.5vw, 1rem);
 }
 
 .case-images {
@@ -967,7 +975,7 @@ footer {
     justify-content: flex-end;
 }
 
-.case-image-item p {
+.case-image-item p:not(.image-description) {
     padding: clamp(0.75rem, 1.5vw, 1rem);
     color: #555;
     font-size: var(--small-size);
