@@ -197,9 +197,7 @@ export const casesData = {
         images: [
           { src: machshirCase2_2, alt: 'צילום אבחנתי - מקרה 4', caption: 'צילום אבחנתי' },
           { src: machshirCase5_2, alt: 'המכשיר השבור לאחר הוצאתו - מקרה 4', caption: 'המכשיר השבור לאחר הוצאתו' },
-          { src: machshirCase2_1, alt: 'צילום לאחר הוצאת המכשיר השבור - מקרה 4', caption: 'צילום לאחר הוצאת המכשיר השבור' },
-          { src: machshirCase6_2, alt: 'צילום אבחנתי - מקרה 4', caption: 'צילום אבחנתי' },
-          { src: machshirCase3_2, alt: 'צילום מעקב אחרי שנתיים - מקרה 4', caption: 'צילום מעקב אחרי שנתיים' }
+          { src: machshirCase2_1, alt: 'צילום לאחר הוצאת המכשיר השבור - מקרה 4', caption: 'צילום לאחר הוצאת המכשיר השבור' }
         ]
       },
       {
@@ -225,6 +223,13 @@ export const casesData = {
           { src: machshirCase5_1, alt: 'צילום אבחנתי - מקרה 7', caption: 'צילום אבחנתי' },
           { src: machshirCase7_1, alt: 'המכשיר השבור לאחר הוצאתו - מקרה 7', caption: 'המכשיר השבור לאחר הוצאתו' },
           { src: machshirCase4_4, alt: 'צילום לאחר הוצאת המכשיר השבור - מקרה 7', caption: 'צילום לאחר הוצאת המכשיר השבור' }
+        ]
+      },
+      {
+        title: 'מקרה 8',
+        images: [
+          { src: machshirCase6_2, alt: 'צילום אבחנתי - מקרה 8', caption: 'צילום אבחנתי' },
+          { src: machshirCase3_2, alt: 'צילום מעקב אחרי שנתיים - מקרה 8', caption: 'צילום מעקב אחרי שנתיים' }
         ]
       }
     ]
@@ -322,9 +327,9 @@ export const casesData = {
       {
         title: 'מקרה 2',
         images: [
-          { src: siumCase2_1, alt: 'צילום אבחנתי - מקרה 2', caption: 'צילום אבחנתי' },
+          { src: siumCase2_3, alt: 'צילום אבחנתי - מקרה 2', caption: 'צילום אבחנתי' },
           { src: siumCase2_2, alt: 'בסיום טיפול השורש - מקרה 2', caption: 'בסיום טיפול השורש' },
-          { src: siumCase2_3, alt: 'לאחר חודש וחצי - מקרה 2', caption: 'לאחר חודש וחצי', description: 'ניתן לראות ריפוי של הנגע הסב-חודי' }
+          { src: siumCase2_1, alt: 'לאחר חודש וחצי - מקרה 2', caption: 'לאחר חודש וחצי', description: 'ניתן לראות ריפוי של הנגע הסב-חודי' }
         ]
       },
       {
