@@ -268,7 +268,7 @@ export const casesData = {
       {
         title: 'מקרה 2',
         images: [
-          { src: ripuiCase7_2, alt: 'צילום אבחנתי - מקרה 2', caption: 'צילום אבחנתי', description: 'בתעלות M יש סטיה מכיוון התעלה, נקב ונגע סב-שורשי' },
+          { src: ripuiCase7_2, alt: 'צילום אבחנתי - מקרה 2', caption: 'צילום אבחנתי', description: 'בתעלות M יש סטיה מתוואי התעלות, נקב ונגע סב-שורשי' },
           { src: ripuiCase1_1, alt: 'צילום ביקורת - מקרה 2', caption: 'צילום ביקורת', description: '14 שנים לאחר מיכן רואים ריפוי של הנגע' }
         ]
       },
@@ -305,7 +305,7 @@ export const casesData = {
         title: 'מקרה 7',
         images: [
           { src: ripuiCase5_1, alt: 'צילום אבחנתי - מקרה 7', caption: 'צילום אבחנתי', description: 'נגע סב-שורשי גדול' },
-          { src: ripuiCase4_1, alt: 'צילום במהלך הטיפול - מקרה 7', caption: 'צילום במהלך הטיפול', description: 'לאחר 3 חודשים עם תרופות חבישה 2Ca(OH)' },
+          { src: ripuiCase4_1, alt: 'צילום במהלך הטיפול - מקרה 7', caption: 'צילום במהלך הטיפול', description: 'לאחר 3 חודשים עם תרופות חבישה Ca(OH)₂' },
           { src: ripuiCase5_2, alt: 'צילום ביקורת - מקרה 7', caption: 'צילום ביקורת', description: '10 חודשים ו- 15 חודשים מתחילת הטיפול רואים ריפוי של הנע הסב-שורשי' }
         ]
       }
