@@ -328,7 +328,7 @@ export const casesData = {
         title: 'מקרה 2',
         images: [
           { src: siumCase2_3, alt: 'צילום אבחנתי - מקרה 2', caption: 'צילום אבחנתי' },
-          { src: siumCase2_2, alt: 'בסיום טיפול השורש - מקרה 2', caption: 'בסיום טיפול השורש' },
+          { src: siumCase2_2, alt: 'במהלך טיפול השורש - מקרה 2', caption: 'במהלך טיפול השורש' },
           { src: siumCase2_1, alt: 'לאחר חודש וחצי - מקרה 2', caption: 'לאחר חודש וחצי', description: 'ניתן לראות ריפוי של הנגע הסב-חודי' }
         ]
       },
@@ -343,7 +343,7 @@ export const casesData = {
         title: 'מקרה 4',
         images: [
           { src: siumCase4_1, alt: 'אבחנתי - מקרה 4', caption: 'אבחנתי' },
-          { src: siumCase4_middle, alt: 'מקרה 4 - תמונה אמצעית' },
+          { src: siumCase4_middle, alt: 'במהלך טיפול השורש - מקרה 4', caption: 'במהלך טיפול השורש' },
           { src: siumCase4_2, alt: 'סופי - מקרה 4', caption: 'סופי' }
         ]
       }
