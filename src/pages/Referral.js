@@ -251,12 +251,7 @@ function Referral() {
     }
     
     try {
-      const response = await fetch('https://formspree.io/f/xrbnrobb', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+      const data = {
           patientName: formData.patientName,
           toothNumber: formData.toothNumber,
           reasonConsultation: formData.reasonConsultation,
@@ -267,9 +262,24 @@ function Referral() {
           doctorName: formData.doctorName,
           doctorPhone: formData.doctorPhone,
           doctorEmail: formData.doctorEmail,
-          referralDate: formData.referralDate,
-          attachmentsCount: attachedFiles ? attachedFiles.length : 0
-        })
+          referralDate: formData.referralDate
+        };
+      const bodyData = new FormData();
+      Object.keys(data).forEach(key => {
+        bodyData.append(key, data[key]);
+      });
+      bodyData.append('accessKey', 'sf_fhcf6j31k00i6l0mg72blah2');
+      if (attachedFiles.length > 0) {
+        // We convert the FileList to an Array and loop through it
+        Array.from(attachedFiles).forEach((file, index) => {
+          // Note: Some email APIs prefer 'file' or 'file1', 'file2'
+          // Check your StaticForms settings, but 'file' is the standard.
+          bodyData.append('file', file); 
+        });
+      }
+      const response = await fetch('https://api.staticforms.dev/submit', {
+        method: 'POST',
+        body: bodyData
       });
 
       if (response.ok) {
@@ -314,7 +324,7 @@ function Referral() {
 
   return (
     <section className="page-content referral-page" dir="rtl">
-      <h1 className="page-title">טופס הפניה דנטלי</h1>
+      <h1 className="page-title">טופס הפניה</h1>
       <div className="content-section">
         <form
           id="contactForm"
