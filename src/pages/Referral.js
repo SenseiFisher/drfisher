@@ -38,6 +38,7 @@ function Referral() {
     subject: '',
     content: ''
   });
+  const referralFormPdfUrl = '/pdfs/referral-form.pdf';
 
   const formatPhoneNumber = (value) => {
     // Remove all non-digit characters
@@ -266,7 +267,6 @@ function Referral() {
   return (
     <section className="page-content referral-page">
       <h1 className="page-title">צור קשר</h1>
-      
       <div className="content-section">
         <form id="contactForm" className="contact-form" onSubmit={handleSubmit} noValidate>
           <div aria-live="polite" aria-atomic="true" className="sr-only"></div>
@@ -432,9 +432,19 @@ function Referral() {
             )}
           </div>
           
-          <button type="submit" className="submit-btn" disabled={isSubmitting} aria-busy={isSubmitting}>
-            {isSubmitting ? 'שולח...' : 'שלח'}
-          </button>
+          <div className="form-actions" style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
+            <button type="submit" className="submit-btn" disabled={isSubmitting} aria-busy={isSubmitting}>
+              {isSubmitting ? 'שולח...' : 'שלח'}
+            </button>
+            <a
+              href={referralFormPdfUrl}
+              className="submit-btn"
+              style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+              download
+            >
+              הורדת טופס הפנייה
+            </a>
+          </div>
           
           {errorMessage && (
             <div 
