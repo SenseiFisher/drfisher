@@ -20,25 +20,42 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
 function Referral() {
   const [formData, setFormData] = useState({
-    name: '',
-    address: '',
-    email: '',
-    phone: '',
-    subject: '',
-    content: ''
+    patientName: '',
+    toothNumber: '',
+    reasonConsultation: false,
+    reasonRootCanal: false,
+    reasonRetreatment: false,
+    reasonOther: '',
+    treatmentPerformed: '',
+    doctorName: '',
+    doctorPhone: '',
+    doctorEmail: '',
+    referralDate: ''
   });
   const [showThankYou, setShowThankYou] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [emailError, setEmailError] = useState('');
   const [fieldErrors, setFieldErrors] = useState({
-    name: '',
-    address: '',
-    phone: '',
-    subject: '',
-    content: ''
+    patientName: '',
+    toothNumber: '',
+    treatmentPerformed: '',
+    doctorName: '',
+    doctorPhone: '',
+    doctorEmail: '',
+    referralDate: ''
   });
+  const [attachedFiles, setAttachedFiles] = useState(null);
   const referralFormPdfUrl = '/pdfs/referral-form.pdf';
+  const primaryButtonStyle = {
+    backgroundColor: '#00897b',
+    borderRadius: '999px',
+    padding: '10px 28px',
+    border: 'none',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  };
 
   const formatPhoneNumber = (value) => {
     // Remove all non-digit characters
@@ -67,14 +84,14 @@ function Referral() {
     
     setFormData({
       ...formData,
-      phone: formatted
+      doctorPhone: formatted
     });
     
     // Clear error when user starts typing
-    if (fieldErrors.phone) {
+    if (fieldErrors.doctorPhone) {
       setFieldErrors({
         ...fieldErrors,
-        phone: ''
+        doctorPhone: ''
       });
     }
     // Clear general error message when user starts typing
@@ -104,7 +121,7 @@ function Referral() {
     
     setFormData({
       ...formData,
-      email: value
+      doctorEmail: value
     });
     
     // Validate email
@@ -122,11 +139,13 @@ function Referral() {
     
     if (trimmedValue.length === 0) {
       const fieldNames = {
-        name: 'שם',
-        address: 'כתובת',
-        phone: 'מספר טלפון',
-        subject: 'נושא',
-        content: 'תוכן'
+        patientName: 'שם המטופל/ת',
+        toothNumber: 'מספר שן',
+        treatmentPerformed: 'טיפול שבוצע',
+        doctorName: 'שם הרופא/ה',
+        doctorPhone: 'מספר טלפון',
+        doctorEmail: 'דוא"ל',
+        referralDate: 'תאריך ההפניה'
       };
       return `שדה ${fieldNames[name]} נדרש`;
     }
@@ -135,16 +154,16 @@ function Referral() {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     
-    if (name === 'phone') {
+    if (name === 'doctorPhone') {
       handlePhoneChange(e);
-    } else if (name === 'email') {
+    } else if (name === 'doctorEmail') {
       handleEmailChange(e);
     } else {
       setFormData({
         ...formData,
-        [name]: value
+        [name]: type === 'checkbox' ? checked : value
       });
       
       // Clear error when user starts typing
@@ -168,22 +187,31 @@ function Referral() {
     
     // Validate all required fields
     const errors = {
-      name: validateField('name', formData.name),
-      address: validateField('address', formData.address),
-      phone: validateField('phone', formData.phone),
-      subject: validateField('subject', formData.subject),
-      content: validateField('content', formData.content)
+      patientName: validateField('patientName', formData.patientName),
+      // toothNumber: validateField('toothNumber', formData.toothNumber), // optional, uncomment if required
+      treatmentPerformed: validateField('treatmentPerformed', formData.treatmentPerformed),
+      doctorName: validateField('doctorName', formData.doctorName),
+      doctorPhone: validateField('doctorPhone', formData.doctorPhone),
+      doctorEmail: validateField('doctorEmail', formData.doctorEmail),
+      referralDate: validateField('referralDate', formData.referralDate)
     };
+
+    // Ensure at least one reason is selected
+    const hasReasonSelected =
+      formData.reasonConsultation ||
+      formData.reasonRootCanal ||
+      formData.reasonRetreatment ||
+      formData.reasonOther.trim() !== '';
     
     // Validate email
-    const emailValidation = validateEmail(formData.email);
+    const emailValidation = validateEmail(formData.doctorEmail);
     if (!emailValidation.isValid) {
       setEmailError(emailValidation.error);
       setErrorMessage('אנא מלא את כל השדות הנדרשים');
       setIsSubmitting(false);
       // Scroll to email field
       setTimeout(() => {
-        const emailField = document.getElementById('email');
+        const emailField = document.getElementById('doctorEmail');
         if (emailField) {
           emailField.scrollIntoView({ behavior: 'smooth', block: 'center' });
           emailField.focus();
@@ -192,6 +220,12 @@ function Referral() {
       return;
     }
     
+    if (!hasReasonSelected) {
+      setErrorMessage('אנא בחר/י לפחות סיבת הפניה אחת');
+      setIsSubmitting(false);
+      return;
+    }
+
     // Check if there are any field errors
     const hasErrors = Object.values(errors).some(error => error !== '');
     if (hasErrors) {
@@ -201,7 +235,7 @@ function Referral() {
       
       // Scroll to first field with error
       setTimeout(() => {
-        const fieldOrder = ['name', 'address', 'phone', 'subject', 'content'];
+        const fieldOrder = ['patientName', 'toothNumber', 'treatmentPerformed', 'doctorName', 'doctorPhone', 'doctorEmail', 'referralDate'];
         for (const fieldName of fieldOrder) {
           if (errors[fieldName]) {
             const fieldElement = document.getElementById(fieldName);
@@ -223,33 +257,47 @@ function Referral() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: formData.name,
-          address: formData.address,
-          email: formData.email,
-          phone: formData.phone,
-          subject: formData.subject,
-          content: formData.content
+          patientName: formData.patientName,
+          toothNumber: formData.toothNumber,
+          reasonConsultation: formData.reasonConsultation,
+          reasonRootCanal: formData.reasonRootCanal,
+          reasonRetreatment: formData.reasonRetreatment,
+          reasonOther: formData.reasonOther,
+          treatmentPerformed: formData.treatmentPerformed,
+          doctorName: formData.doctorName,
+          doctorPhone: formData.doctorPhone,
+          doctorEmail: formData.doctorEmail,
+          referralDate: formData.referralDate,
+          attachmentsCount: attachedFiles ? attachedFiles.length : 0
         })
       });
 
       if (response.ok) {
         setShowThankYou(true);
         setFormData({
-          name: '',
-          address: '',
-          email: '',
-          phone: '',
-          subject: '',
-          content: ''
+          patientName: '',
+          toothNumber: '',
+          reasonConsultation: false,
+          reasonRootCanal: false,
+          reasonRetreatment: false,
+          reasonOther: '',
+          treatmentPerformed: '',
+          doctorName: '',
+          doctorPhone: '',
+          doctorEmail: '',
+          referralDate: ''
         });
         setFieldErrors({
-          name: '',
-          address: '',
-          phone: '',
-          subject: '',
-          content: ''
+          patientName: '',
+          toothNumber: '',
+          treatmentPerformed: '',
+          doctorName: '',
+          doctorPhone: '',
+          doctorEmail: '',
+          referralDate: ''
         });
         setEmailError('');
+        setAttachedFiles(null);
         setTimeout(() => {
           setShowThankYou(false);
         }, 5000);
@@ -265,213 +313,422 @@ function Referral() {
   };
 
   return (
-    <section className="page-content referral-page">
-      <h1 className="page-title">צור קשר</h1>
+    <section className="page-content referral-page" dir="rtl">
+      <h1 className="page-title">טופס הפניה דנטלי</h1>
       <div className="content-section">
-        <form id="contactForm" className="contact-form" onSubmit={handleSubmit} noValidate>
+        <form
+          id="contactForm"
+          className="contact-form"
+          onSubmit={handleSubmit}
+          noValidate
+          style={{
+            backgroundColor: '#ffffff',
+            borderRadius: '16px',
+            padding: '24px',
+            boxShadow: '0 8px 20px rgba(0,0,0,0.05)',
+            border: '1px solid #e0f2f1'
+          }}
+        >
           <div aria-live="polite" aria-atomic="true" className="sr-only"></div>
-          <div className="form-group">
-            <label htmlFor="name">שם</label>
-            <input 
-              type="text" 
-              id="name" 
-              name="name" 
-              value={formData.name}
-              onChange={handleChange}
-              required
-              aria-invalid={!!fieldErrors.name}
-              aria-describedby={fieldErrors.name ? 'name-error' : undefined}
-            />
-            {fieldErrors.name && (
-              <div 
-                id="name-error"
-                role="alert"
-                style={{ 
-                  color: '#721c24', 
-                  fontSize: '0.875rem', 
-                  marginTop: '0.25rem' 
-                }}
-              >
-                {fieldErrors.name}
-              </div>
-            )}
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="address">כתובת</label>
-            <input 
-              type="text" 
-              id="address" 
-              name="address" 
-              value={formData.address}
-              onChange={handleChange}
-              required
-              aria-invalid={!!fieldErrors.address}
-              aria-describedby={fieldErrors.address ? 'address-error' : undefined}
-            />
-            {fieldErrors.address && (
-              <div 
-                id="address-error"
-                role="alert"
-                style={{ 
-                  color: '#721c24', 
-                  fontSize: '0.875rem', 
-                  marginTop: '0.25rem' 
-                }}
-              >
-                {fieldErrors.address}
-              </div>
-            )}
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="email">אימייל</label>
-            <input 
-              type="email" 
-              id="email" 
-              name="email" 
-              value={formData.email}
-              onChange={handleChange}
-              required
-              aria-invalid={!!emailError}
-              aria-describedby={emailError ? 'email-error' : undefined}
-            />
-            {emailError && (
-              <div 
-                id="email-error"
-                role="alert"
-                style={{ 
-                  color: '#721c24', 
-                  fontSize: '0.875rem', 
-                  marginTop: '0.25rem' 
-                }}
-              >
-                {emailError}
-              </div>
-            )}
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="phone">מספר טלפון</label>
-            <input 
-              type="tel" 
-              id="phone" 
-              name="phone" 
-              value={formData.phone}
-              onChange={handleChange}
-              required
-              aria-invalid={!!fieldErrors.phone}
-              aria-describedby={fieldErrors.phone ? 'phone-error' : undefined}
-            />
-            {fieldErrors.phone && (
-              <div 
-                id="phone-error"
-                role="alert"
-                style={{ 
-                  color: '#721c24', 
-                  fontSize: '0.875rem', 
-                  marginTop: '0.25rem' 
-                }}
-              >
-                {fieldErrors.phone}
-              </div>
-            )}
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="subject">נושא</label>
-            <input 
-              type="text" 
-              id="subject" 
-              name="subject" 
-              value={formData.subject}
-              onChange={handleChange}
-              required
-              aria-invalid={!!fieldErrors.subject}
-              aria-describedby={fieldErrors.subject ? 'subject-error' : undefined}
-            />
-            {fieldErrors.subject && (
-              <div 
-                id="subject-error"
-                role="alert"
-                style={{ 
-                  color: '#721c24', 
-                  fontSize: '0.875rem', 
-                  marginTop: '0.25rem' 
-                }}
-              >
-                {fieldErrors.subject}
-              </div>
-            )}
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="content">תוכן</label>
-            <textarea 
-              id="content" 
-              name="content" 
-              rows="6" 
-              value={formData.content}
-              onChange={handleChange}
-              required
-              aria-invalid={!!fieldErrors.content}
-              aria-describedby={fieldErrors.content ? 'content-error' : undefined}
-            />
-            {fieldErrors.content && (
-              <div 
-                id="content-error"
-                role="alert"
-                style={{ 
-                  color: '#721c24', 
-                  fontSize: '0.875rem', 
-                  marginTop: '0.25rem' 
-                }}
-              >
-                {fieldErrors.content}
-              </div>
-            )}
-          </div>
-          
-          <div className="form-actions" style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
-            <button type="submit" className="submit-btn" disabled={isSubmitting} aria-busy={isSubmitting}>
-              {isSubmitting ? 'שולח...' : 'שלח'}
-            </button>
-            <a
-              href={referralFormPdfUrl}
-              className="submit-btn"
-              style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
-              download
+
+          {/* Section 1: Patient Details */}
+          <div className="form-section" style={{ marginBottom: '24px' }}>
+            <h2
+              style={{
+                fontSize: '1.1rem',
+                marginBottom: '12px',
+                color: '#00695c',
+                borderBottom: '2px solid #e0f2f1',
+                paddingBottom: '4px'
+              }}
             >
-              הורדת טופס הפנייה
-            </a>
+              פרטי המטופל/ת
+            </h2>
+            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+              <div className="form-group" style={{ flex: 1, minWidth: '220px' }}>
+                <label htmlFor="patientName">שם המטופל/ת</label>
+                <input
+                  type="text"
+                  id="patientName"
+                  name="patientName"
+                  value={formData.patientName}
+                  onChange={handleChange}
+                  required
+                  aria-invalid={!!fieldErrors.patientName}
+                  aria-describedby={fieldErrors.patientName ? 'patientName-error' : undefined}
+                  style={{ borderRadius: '8px' }}
+                />
+                {fieldErrors.patientName && (
+                  <div
+                    id="patientName-error"
+                    role="alert"
+                    style={{
+                      color: '#721c24',
+                      fontSize: '0.875rem',
+                      marginTop: '0.25rem'
+                    }}
+                  >
+                    {fieldErrors.patientName}
+                  </div>
+                )}
+              </div>
+
+              <div className="form-group" style={{ width: '150px' }}>
+                <label htmlFor="toothNumber">מספר שן</label>
+                <input
+                  type="text"
+                  id="toothNumber"
+                  name="toothNumber"
+                  value={formData.toothNumber}
+                  onChange={handleChange}
+                  aria-invalid={!!fieldErrors.toothNumber}
+                  aria-describedby={fieldErrors.toothNumber ? 'toothNumber-error' : undefined}
+                  style={{ borderRadius: '8px' }}
+                />
+                {fieldErrors.toothNumber && (
+                  <div
+                    id="toothNumber-error"
+                    role="alert"
+                    style={{
+                      color: '#721c24',
+                      fontSize: '0.875rem',
+                      marginTop: '0.25rem'
+                    }}
+                  >
+                    {fieldErrors.toothNumber}
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
-          
+
+          {/* Section 2: Reason for Referral */}
+          <div className="form-section" style={{ marginBottom: '24px' }}>
+            <h2
+              style={{
+                fontSize: '1.1rem',
+                marginBottom: '12px',
+                color: '#00695c',
+                borderBottom: '2px solid #e0f2f1',
+                paddingBottom: '4px'
+              }}
+            >
+              סיבת הפניה
+            </h2>
+
+            <div
+              className="checkbox-group"
+              style={{
+                display: 'flex',
+                gap: '16px',
+                flexWrap: 'wrap',
+                marginBottom: '12px'
+              }}
+            >
+              <label style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <input
+                  type="checkbox"
+                  name="reasonConsultation"
+                  checked={formData.reasonConsultation}
+                  onChange={handleChange}
+                />
+                ייעוץ
+              </label>
+
+              <label style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <input
+                  type="checkbox"
+                  name="reasonRootCanal"
+                  checked={formData.reasonRootCanal}
+                  onChange={handleChange}
+                />
+                טיפול שורש
+              </label>
+
+              <label style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <input
+                  type="checkbox"
+                  name="reasonRetreatment"
+                  checked={formData.reasonRetreatment}
+                  onChange={handleChange}
+                />
+                חידוש טיפול שורש
+              </label>
+            </div>
+
+            <div className="form-group" style={{ marginBottom: '16px' }}>
+              <label htmlFor="reasonOther">אחר (נא פרט/י)</label>
+              <input
+                type="text"
+                id="reasonOther"
+                name="reasonOther"
+                value={formData.reasonOther}
+                onChange={handleChange}
+                style={{ borderRadius: '8px' }}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="treatmentPerformed">טיפול שבוצע</label>
+              <textarea
+                id="treatmentPerformed"
+                name="treatmentPerformed"
+                rows="1"
+                value={formData.treatmentPerformed}
+                onChange={handleChange}
+                required
+                aria-invalid={!!fieldErrors.treatmentPerformed}
+                aria-describedby={fieldErrors.treatmentPerformed ? 'treatmentPerformed-error' : undefined}
+                style={{ borderRadius: '8px', minHeight: '70px', resize: 'vertical' }}
+              />
+              {fieldErrors.treatmentPerformed && (
+                <div
+                  id="treatmentPerformed-error"
+                  role="alert"
+                  style={{
+                    color: '#721c24',
+                    fontSize: '0.875rem',
+                    marginTop: '0.25rem'
+                  }}
+                >
+                  {fieldErrors.treatmentPerformed}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Section 3: Referring Doctor Details */}
+          <div className="form-section" style={{ marginBottom: '24px' }}>
+            <h2
+              style={{
+                fontSize: '1.1rem',
+                marginBottom: '12px',
+                color: '#00695c',
+                borderBottom: '2px solid #e0f2f1',
+                paddingBottom: '4px'
+              }}
+            >
+              פרטי הרופא/ה המפנה
+            </h2>
+
+            <div
+              style={{
+                borderRadius: '12px',
+                border: '1px solid #e0f2f1',
+                backgroundColor: '#f9fbfb',
+                padding: '16px',
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                gap: '16px'
+              }}
+            >
+              <div className="form-group">
+                <label htmlFor="doctorName">שם הרופא/ה</label>
+                <input
+                  type="text"
+                  id="doctorName"
+                  name="doctorName"
+                  value={formData.doctorName}
+                  onChange={handleChange}
+                  required
+                  aria-invalid={!!fieldErrors.doctorName}
+                  aria-describedby={fieldErrors.doctorName ? 'doctorName-error' : undefined}
+                  style={{ borderRadius: '8px' }}
+                />
+                {fieldErrors.doctorName && (
+                  <div
+                    id="doctorName-error"
+                    role="alert"
+                    style={{
+                      color: '#721c24',
+                      fontSize: '0.875rem',
+                      marginTop: '0.25rem'
+                    }}
+                  >
+                    {fieldErrors.doctorName}
+                  </div>
+                )}
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="doctorPhone">מספר טלפון</label>
+                <input
+                  type="tel"
+                  id="doctorPhone"
+                  name="doctorPhone"
+                  value={formData.doctorPhone}
+                  onChange={handleChange}
+                  required
+                  aria-invalid={!!fieldErrors.doctorPhone}
+                  aria-describedby={fieldErrors.doctorPhone ? 'doctorPhone-error' : undefined}
+                  style={{ borderRadius: '8px' }}
+                />
+                {fieldErrors.doctorPhone && (
+                  <div
+                    id="doctorPhone-error"
+                    role="alert"
+                    style={{
+                      color: '#721c24',
+                      fontSize: '0.875rem',
+                      marginTop: '0.25rem'
+                    }}
+                  >
+                    {fieldErrors.doctorPhone}
+                  </div>
+                )}
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="doctorEmail">דוא"ל</label>
+                <input
+                  type="email"
+                  id="doctorEmail"
+                  name="doctorEmail"
+                  value={formData.doctorEmail}
+                  onChange={handleChange}
+                  required
+                  aria-invalid={!!emailError}
+                  aria-describedby={emailError ? 'doctorEmail-error' : undefined}
+                  style={{ borderRadius: '8px' }}
+                />
+                {emailError && (
+                  <div
+                    id="doctorEmail-error"
+                    role="alert"
+                    style={{
+                      color: '#721c24',
+                      fontSize: '0.875rem',
+                      marginTop: '0.25rem'
+                    }}
+                  >
+                    {emailError}
+                  </div>
+                )}
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="referralDate">תאריך הפניה</label>
+                <input
+                  type="date"
+                  id="referralDate"
+                  name="referralDate"
+                  value={formData.referralDate}
+                  onChange={handleChange}
+                  required
+                  aria-invalid={!!fieldErrors.referralDate}
+                  aria-describedby={fieldErrors.referralDate ? 'referralDate-error' : undefined}
+                  lang="he-IL"
+                  style={{ borderRadius: '8px' }}
+                />
+                {fieldErrors.referralDate && (
+                  <div
+                    id="referralDate-error"
+                    role="alert"
+                    style={{
+                      color: '#721c24',
+                      fontSize: '0.875rem',
+                      marginTop: '0.25rem'
+                    }}
+                  >
+                    {fieldErrors.referralDate}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Actions */}
+          <div
+            className="form-actions"
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '12px',
+              alignItems: 'flex-start'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <label
+                htmlFor="attachments"
+                style={{
+                  padding: '8px 16px',
+                  borderRadius: '999px',
+                  border: '1px solid #00897b',
+                  color: '#00897b',
+                  cursor: 'pointer',
+                  backgroundColor: 'transparent',
+                  fontSize: '0.9rem'
+                }}
+              >
+                צרף צילומים
+              </label>
+              <input
+                id="attachments"
+                type="file"
+                multiple
+                onChange={(e) => setAttachedFiles(e.target.files)}
+                style={{ display: 'none' }}
+              />
+              {attachedFiles && attachedFiles.length > 0 && (
+                <span style={{ fontSize: '0.85rem', color: '#555' }}>
+                  {attachedFiles.length} קבצים נבחרו
+                </span>
+              )}
+            </div>
+
+            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+              <button
+                type="submit"
+                className="submit-btn"
+                disabled={isSubmitting}
+                aria-busy={isSubmitting}
+                style={primaryButtonStyle}
+              >
+                {isSubmitting ? 'שולח...' : 'שלח טופס'}
+              </button>
+              <a
+                href={referralFormPdfUrl}
+                className="submit-btn"
+                style={{
+                  ...primaryButtonStyle,
+                  textDecoration: 'none',
+                  whiteSpace: 'nowrap',
+                  width: 'auto',
+                  maxWidth: 'none'
+                }}
+                download
+              >
+                הורדת טופס הפניה
+              </a>
+            </div>
+          </div>
+
           {errorMessage && (
-            <div 
+            <div
               className="error-message"
               role="alert"
               aria-live="assertive"
-              style={{ 
-                marginTop: '15px', 
-                padding: '15px', 
-                backgroundColor: '#f8d7da', 
-                color: '#721c24', 
-                border: '1px solid #f5c6cb', 
-                borderRadius: '5px', 
-                textAlign: 'center' 
+              style={{
+                marginTop: '15px',
+                padding: '15px',
+                backgroundColor: '#f8d7da',
+                color: '#721c24',
+                border: '1px solid #f5c6cb',
+                borderRadius: '5px',
+                textAlign: 'center'
               }}
             >
               {errorMessage}
             </div>
           )}
-          
+
           {showThankYou && (
-            <div 
+            <div
               className="thank-you-message"
               role="status"
               aria-live="polite"
             >
-              תודה! הפנייתך התקבלה בהצלחה.
+              תודה! הטופס נשלח בהצלחה.
             </div>
           )}
         </form>
