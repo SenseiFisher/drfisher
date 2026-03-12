@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ד"ר אליהו פישר - טופס הפניה</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #005088;
+            --secondary: #11caa0;
+            --text-dark: #1a1a1a;
+            --border: #cccccc;
+        }
+
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Assistant', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .referral-page {
+            background: #fff;
+            width: 800px;
+            min-height: 1000px;
+            padding: 50px 60px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        /* Header Layout */
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Branding Styles */
+        .branding h1 {
+            color: var(--primary);
+            font-size: 22px;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .branding p {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 0 0 4px 0;
+        }
+
+        .branding-divider {
+            width: 100%;
+            max-width: 250px;
+            height: 2px;
+            background-color: var(--border);
+            margin: 8px 0;
+            border-radius: 2px;
+        }
+
+        .logo-container img {
+            height: 100px;
+            width: auto;
+            display: block;
+        }
+
+        .document-title {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        .form-content {
+            flex-grow: 1;
+        }
+
+        .section-title {
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 20px 0 15px 0;
+            border-right: 5px solid var(--secondary);
+            padding-right: 10px;
+            background-color: #f8fafc;
+            padding-top: 6px;
+            padding-bottom: 6px;
+        }
+
+        .field-row {
+            margin-bottom: 18px;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+        }
+
+        .field-label {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-dark);
+            white-space: nowrap;
+        }
+
+        .field-line {
+            flex-grow: 1;
+            border-bottom: 1px solid #000;
+            height: 20px;
+        }
+
+        /* Checkbox Styles */
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 17px;
+        }
+
+        .checkbox-box {
+            width: 18px;
+            height: 18px;
+            border: 1px solid #000;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .other-row {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        /* Framed Section for Referring Doctor */
+        .doctor-frame {
+            border: 1.5px solid var(--primary);
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 4px;
+        }
+
+        /* Signature Area */
+        .signature-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .signature-box {
+            width: 250px;
+            height: 120px;
+            border: 1px solid #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            position: relative;
+        }
+
+        .signature-title-inside {
+            font-size: 22px; /* Bigger font */
+            font-weight: 700;
+            color: #000;
+            text-align: center;
+            opacity: 0.15; /* Added opacity */
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .note-attachment {
+            font-size: 14px;
+            font-style: italic;
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 40px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .footer-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            direction: ltr;
+            margin-bottom: 5px;
+        }
+
+        .footer-address {
+            direction: rtl;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        @media print {
+            body { background: none; padding: 0; }
+            .referral-page { box-shadow: none; width: 100%; border: none; padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="referral-page">
+        <!-- 1. Header -->
+        <header>
+            <div class="header-flex">
+                <div class="branding">
+                    <p>מרפאה לטיפולי שורש</p>
+                    <div class="branding-divider"></div>
+                    <h1>ד"ר אליהו פישר</h1>
+                </div>
+                <div class="logo-container">
+                    <img src="icon-black.png" alt="Logo Dr. Fisher" onerror="this.style.display='none'">
+                </div>
+            </div>
+            <div class="document-title">טופס הפנייה</div>
+        </header>
+
+        <div class="form-content">
+            
+            <!-- Date Field -->
+            <div class="field-row">
+                <span class="field-label">תאריך:</span>
+                <div class="field-line" style="width: 120px; flex-grow: 0; margin-right: 10px;"></div>
+            </div>
+
+            <!-- 2. Patient Details -->
+            <div class="section-title">פרטי המטופל/ת</div>
+            <div class="field-row">
+                <span class="field-label">שם:</span>
+                <div class="field-line" style="width: 300px; flex-grow: 0;"></div>
+            </div>
+            <div class="field-row">
+                <span class="field-label">מספר שן:</span>
+                <div class="field-line" style="width: 200px; flex-grow: 0;"></div>
+            </div>
+
+            <!-- 3. Reason for Referral -->
+            <div class="section-title">סיבת הפנייה</div>
+            <div class="checkbox-group">
+                <div class="checkbox-item"><div class="checkbox-box"></div> יעוץ</div>
+                <div class="checkbox-item"><div class="checkbox-box"></div> טיפול שורש</div>
+                <div class="checkbox-item"><div class="checkbox-box"></div> חידוש טיפול שורש</div>
+            </div>
+            
+            <!-- Other Field -->
+            <div class="other-row">
+                <div class="checkbox-item">
+                    <div class="checkbox-box"></div> 
+                    <span class="field-label">אחר (נא פרט/י):</span>
+                </div>
+                <div class="field-line"></div>
+            </div>
+
+            <!-- Treatment Performed Field -->
+            <div class="other-row" style="margin-top: 15px;">
+                <span class="field-label">טיפול שבוצע:</span>
+                <div class="field-line"></div>
+            </div>
+
+            <!-- 4. Referring Doctor Details (Framed) -->
+            <div class="doctor-frame">
+                <div class="section-title" style="margin-top: 0; background: none;">פרטי הרופא/ה המפנה</div>
+                <div class="field-row">
+                    <span class="field-label">שם:</span>
+                    <div class="field-line"></div>
+                </div>
+                <div class="field-row">
+                    <span class="field-label">מספר טלפון:</span>
+                    <div class="field-line"></div>
+                </div>
+                <div class="field-row">
+                    <span class="field-label">דוא"ל:</span>
+                    <div class="field-line"></div>
+                </div>
+            </div>
+
+            <!-- 5. Authorization & Notes -->
+            <div class="signature-container">
+                <div style="align-self: flex-end; flex-grow: 1; margin-left: 40px;">
+                    <!-- Notes Field with Two Lines -->
+                    <div style="margin-bottom: 25px;">
+                        <div class="field-row" style="margin-bottom: 10px;">
+                            <span class="field-label">הערות:</span>
+                            <div class="field-line"></div>
+                        </div>
+                        <div class="field-row" style="margin-bottom: 0;">
+                            <div class="field-line" style="margin-right: 0;"></div>
+                        </div>
+                    </div>
+                    <div class="note-attachment">במידת האפשר אנא צרף צילומים.</div>
+                </div>
+                <div>
+                    <div class="signature-box">
+                        <span class="signature-title-inside">חתימת הרופא המפנה</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Contact Info (Footer) -->
+        <footer>
+            <div class="footer-address">דרך הים 34, פרדס חנה כרכור</div>
+            <div class="footer-info">
+                <span>052-325-4522</span>
+                <span>|</span>
+                <span>dr.fisher.endo@gmail.com</span>
+                <span>|</span>
+                <span>www.drfisher-endo.com</span>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
