@@ -706,7 +706,8 @@ function Referral() {
                   width: 'auto',
                   maxWidth: 'none'
                 }}
-                download
+                target="_blank"
+                rel="noreferrer"
               >
                 הורדת טופס הפניה
               </a>
