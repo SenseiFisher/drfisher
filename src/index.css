@@ -1055,6 +1055,20 @@ footer {
     box-sizing: border-box;
 }
 
+/* Allow two referral forms side-by-side */
+.referral-page .referral-forms-grid {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.referral-page .referral-forms-grid .contact-form {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0;
+}
+
 @media (max-width: 767px) {
     .referral-page {
         max-width: 100% !important;
