@@ -1062,9 +1062,9 @@ footer {
     }
 
     .referral-page .content-section {
-        max-width: 225% !important;
-        width: 225% !important;
-        margin: clamp(0.75rem, 2vw, 1rem) -62.5% !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: clamp(0.75rem, 2vw, 1rem) 0 !important;
         padding: clamp(1rem, 2vw, 1.5rem) clamp(0.75rem, 1.5vw, 1rem) !important;
         box-sizing: border-box;
     }
@@ -1096,6 +1096,27 @@ footer {
     .form-group textarea {
         box-sizing: border-box;
     }
+
+    .referral-page .referral-actions-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .referral-page .referral-actions-row .submit-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+.referral-page .referral-actions-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.referral-page .referral-actions-row .submit-btn {
+    width: auto;
 }
 
 .form-group {

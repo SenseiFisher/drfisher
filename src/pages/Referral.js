@@ -733,7 +733,7 @@ function Referral() {
               </div>
             )}
 
-            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+            <div className="referral-actions-row">
               <button
                 type="submit"
                 className="submit-btn"
@@ -749,9 +749,7 @@ function Referral() {
                 style={{
                   ...primaryButtonStyle,
                   textDecoration: 'none',
-                  whiteSpace: 'nowrap',
-                  width: 'auto',
-                  maxWidth: 'none'
+                  whiteSpace: 'nowrap'
                 }}
                 target="_blank"
                 rel="noreferrer"
