@@ -45,7 +45,8 @@ function Referral() {
     doctorEmail: '',
     referralDate: ''
   });
-  const [attachedFiles, setAttachedFiles] = useState(null);
+  const [attachedFiles, setAttachedFiles] = useState([]);
+  const [hoveredAttachmentIdx, setHoveredAttachmentIdx] = useState(null);
   const referralFormPdfUrl = '/pdfs/referral-form.pdf';
   const primaryButtonStyle = {
     backgroundColor: '#00897b',
@@ -270,11 +271,8 @@ function Referral() {
       });
       bodyData.append('accessKey', 'sf_fhcf6j31k00i6l0mg72blah2');
       if (attachedFiles.length > 0) {
-        // We convert the FileList to an Array and loop through it
-        Array.from(attachedFiles).forEach((file, index) => {
-          // Note: Some email APIs prefer 'file' or 'file1', 'file2'
-          // Check your StaticForms settings, but 'file' is the standard.
-          bodyData.append('file', file); 
+        attachedFiles.forEach((file) => {
+          bodyData.append('file', file);
         });
       }
       const response = await fetch('https://api.staticforms.dev/submit', {
@@ -307,7 +305,7 @@ function Referral() {
           referralDate: ''
         });
         setEmailError('');
-        setAttachedFiles(null);
+        setAttachedFiles([]);
         setTimeout(() => {
           setShowThankYou(false);
         }, 5000);
@@ -320,6 +318,25 @@ function Referral() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleAttachmentsChange = (e) => {
+    const files = Array.from(e.target.files || []);
+    if (files.length === 0) return;
+
+    setAttachedFiles((prev) => [...prev, ...files]);
+    // Allow selecting the same file again later
+    e.target.value = '';
+  };
+
+  const handleRemoveAttachment = (index) => {
+    const file = attachedFiles[index];
+    if (!file) return;
+
+    const ok = window.confirm(`להסיר את הקובץ "${file.name}"?`);
+    if (!ok) return;
+
+    setAttachedFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
   return (
@@ -676,15 +693,45 @@ function Referral() {
                 id="attachments"
                 type="file"
                 multiple
-                onChange={(e) => setAttachedFiles(e.target.files)}
+                onChange={handleAttachmentsChange}
                 style={{ display: 'none' }}
               />
-              {attachedFiles && attachedFiles.length > 0 && (
-                <span style={{ fontSize: '0.85rem', color: '#555' }}>
-                  {attachedFiles.length} קבצים נבחרו
-                </span>
-              )}
             </div>
+
+            {attachedFiles.length > 0 && (
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {attachedFiles.map((file, idx) => (
+                  <button
+                    key={`${file.name}-${file.size}-${file.lastModified}-${idx}`}
+                    type="button"
+                    onClick={() => handleRemoveAttachment(idx)}
+                    onMouseEnter={() => setHoveredAttachmentIdx(idx)}
+                    onMouseLeave={() => setHoveredAttachmentIdx(null)}
+                    style={{
+                      borderRadius: '999px',
+                      border: hoveredAttachmentIdx === idx ? '1px solid #f5c6cb' : '1px solid #e0f2f1',
+                      backgroundColor: hoveredAttachmentIdx === idx ? '#f8d7da' : '#f9fbfb',
+                      color: hoveredAttachmentIdx === idx ? '#721c24' : '#00695c',
+                      cursor: 'pointer',
+                      padding: '6px 10px',
+                      fontSize: '0.85rem',
+                      maxWidth: '100%',
+                      textOverflow: 'ellipsis',
+                      overflow: 'hidden',
+                      whiteSpace: 'nowrap'
+                    }}
+                    title="לחץ להסרה"
+                  >
+                    {file.name}
+                    {hoveredAttachmentIdx === idx && (
+                      <span style={{ marginInlineStart: '8px', fontSize: '0.8em' }}>
+                        לחץ להסרה
+                      </span>
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
 
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
               <button
